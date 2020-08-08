@@ -9,11 +9,11 @@ public class IdGenerator {
     }
 
     public static long generateId() {
-        if (MIN_ID + counter > MAX_ID) {
-            counter = 0;
+        if (counter + 1 > MAX_ID) {
+            counter = MIN_ID;
+        } else {
+            counter++;
         }
-        long id = MIN_ID + counter;
-        counter++;
-        return id;
+        return counter;
     }
 }

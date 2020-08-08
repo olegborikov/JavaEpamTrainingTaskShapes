@@ -53,6 +53,52 @@ public class Quadrangle {
         this.point4 = point4;
     }
 
+    public boolean equalsQuadrangle(Quadrangle quadrangle) {
+        if (this == quadrangle) {
+            return true;
+        }
+        if (quadrangle == null) {
+            return false;
+        }
+        if (point1 == null) {
+            if (quadrangle.point1 != null) {
+                return false;
+            }
+        } else {
+            if (!point1.equals(quadrangle.point1)) {
+                return false;
+            }
+        }
+        if (point2 == null) {
+            if (quadrangle.point2 != null) {
+                return false;
+            }
+        } else {
+            if (!point2.equals(quadrangle.point2)) {
+                return false;
+            }
+        }
+        if (point3 == null) {
+            if (quadrangle.point3 != null) {
+                return false;
+            }
+        } else {
+            if (!point3.equals(quadrangle.point3)) {
+                return false;
+            }
+        }
+        if (point4 == null) {
+            if (quadrangle.point4 != null) {
+                return false;
+            }
+        } else {
+            if (!point4.equals(quadrangle.point4)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

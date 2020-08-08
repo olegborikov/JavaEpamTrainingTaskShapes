@@ -33,6 +33,22 @@ public class Point {
         this.y = y;
     }
 
+    public boolean equalsPoint(Point point) {
+        if (this == point) {
+            return true;
+        }
+        if (point == null) {
+            return false;
+        }
+        if (Double.compare(x, point.x) != 0) {
+            return false;
+        }
+        if (Double.compare(y, point.y) != 0) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -10,11 +10,11 @@
     </Properties>
 
     <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern_console}"/>
         </Console>
 
-        <RollingFile name="file" fileName="log/log4j2.log" append="true"
+        <RollingFile name="File" fileName="log/log4j2.log" append="true"
                      filePattern="log/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
             <PatternLayout pattern="${pattern_file}"/>
             <Policies>
@@ -26,8 +26,8 @@
 
     <Loggers>
         <Root level="INFO">
-            <AppenderRef ref="console"/>
-            <AppenderRef ref="file"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
         </Root>
     </Loggers>
 </Configuration>
