@@ -9,17 +9,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TextFileReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public List<String> readText(String fileName) {
         Path path = Paths.get(fileName);
-        try {
-            List<String> paragraphText = Files.readAllLines(path);
-            return paragraphText;
+        try (Stream<String> text = Files.lines(path)) {
+            List<String> linedText = text.collect(Collectors.toList());
+            LOGGER.log(Level.INFO, "There were read {} lines from file", linedText.size());
+            return linedText;
         } catch (IOException e) {
-            LOGGER.log(Level.FATAL, "Incorrect file", e);
+            LOGGER.log(Level.FATAL, "File is not exists", e);
             throw new RuntimeException(e);
         }
     }
