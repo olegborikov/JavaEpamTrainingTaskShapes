@@ -12,18 +12,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TextFileReader {
+public class CustomFileReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public List<String> readText(String fileName) {
+    public List<String> readFromFile(String fileName) {
         Path path = Paths.get(fileName);
-        try (Stream<String> text = Files.lines(path)) {
-            List<String> linedText = text.collect(Collectors.toList());
-            LOGGER.log(Level.INFO, "There were read {} lines from file", linedText.size());
-            return linedText;
+        try (Stream<String> linedTextStream = Files.lines(path)) {
+            List<String> linedTextList = linedTextStream.collect(Collectors.toList());
+            LOGGER.log(Level.INFO,
+                    "There were read {} lines from file", linedTextList.size());
+            return linedTextList;
         } catch (IOException e) {
             LOGGER.log(Level.FATAL, "File is not exists", e);
-            throw new RuntimeException(e);
+            throw new RuntimeException("File is not exists", e);
         }
     }
 }
