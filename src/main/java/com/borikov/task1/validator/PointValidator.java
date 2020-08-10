@@ -7,8 +7,12 @@ public class PointValidator {
     private static final double MIN_VALUE = -1000;
 
     public boolean isPointInLimit(Point point) {
-        return isCoordinateInLimit(point.getX())
-                && isCoordinateInLimit(point.getY());
+        boolean result = false;
+        if (point != null) {
+            result = isCoordinateInLimit(point.getX())
+                    && isCoordinateInLimit(point.getY());
+        }
+        return result;
     }
 
     public boolean isCoordinateInLimit(double coordinate) {

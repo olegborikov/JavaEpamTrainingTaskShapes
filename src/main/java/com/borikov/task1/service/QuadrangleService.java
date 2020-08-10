@@ -1,25 +1,35 @@
 package com.borikov.task1.service;
 
 import com.borikov.task1.entity.Point;
-import com.borikov.task1.entity.Quadrangle;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-
-import static java.lang.Math.*;
 
 public interface QuadrangleService {
-    public double calculateSquare(Quadrangle quadrangle);
+    default double calculateDistanceBetweenPoints(
+            Point point1, Point point2) {
+        BigDecimal distanceX = BigDecimal.valueOf(point1.getX() - point2.getX());
+        BigDecimal distanceY = BigDecimal.valueOf(point1.getY() - point2.getY());
+        BigDecimal distanceBetweenPoints = distanceX.pow(2).add(distanceY.pow(2));
+        BigDecimal distanceBetweenPoints1 = BigDecimal.valueOf(Math.sqrt(distanceBetweenPoints.doubleValue()));
+        return distanceBetweenPoints1.setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 
-    public double calculatePerimeter(Quadrangle quadrangle);
+    default double calculateCosine(double side1, double side2, double side3) {
+        BigDecimal s1 = BigDecimal.valueOf(side1);
+        BigDecimal s2 = BigDecimal.valueOf(side2);
+        BigDecimal s3 = BigDecimal.valueOf(side3);
+        BigDecimal s12 = s1.multiply(s1);
+        BigDecimal s22 = s2.multiply(s2);
+        BigDecimal s32 = s3.multiply(s3);
+        BigDecimal first = s12.add(s22).subtract(s32).setScale(5, BigDecimal.ROUND_HALF_UP);
+        BigDecimal second = s1.multiply(s1).multiply(new BigDecimal(2));
+        return first.divide(second, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 
-    public boolean isPointsMakeQuadrangle(Point point1, Point point2, Point point3, Point point4);
-
-    public boolean isQuadrangleConvex(Quadrangle quadrangle);
-
-    public boolean isQuadrangleSquare(Quadrangle quadrangle);
-
-    public boolean isQuadrangleRhombus(Quadrangle quadrangle);
-
-    public boolean isQuadrangleTrapezoid(Quadrangle quadrangle);
+    default double getSinusFromCosine(double cosine) {
+        BigDecimal c = BigDecimal.valueOf(cosine);
+        BigDecimal c1 = c.pow(2);
+        BigDecimal sinus = new BigDecimal("1").subtract(c1);
+        return sinus.setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 }
