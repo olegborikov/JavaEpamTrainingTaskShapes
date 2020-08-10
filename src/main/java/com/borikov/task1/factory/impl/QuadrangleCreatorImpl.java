@@ -25,7 +25,7 @@ public class QuadrangleCreatorImpl implements QuadrangleCreator {
             DataParser quadrangleParser = new DataParser();
             QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
             PointValidator pointValidator = new PointValidator();
-            List<String> linedText = textFileReader.readFromFile(fileName);
+            List<String> linedText = textFileReader.readText(fileName);
             int allLinesAmount = linedText.size();
             linedText.removeIf(line -> !quadrangleValidator.isLineConformQuadrangle(line));
             int correctLinesAmount = linedText.size();

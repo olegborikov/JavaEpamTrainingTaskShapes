@@ -8,9 +8,11 @@ public class DataParser {
 
     public List<Double> parseLineToNumberList(String quadrangleLine) {
         List<Double> numbers = new ArrayList<>();
-        String[] numbersString = quadrangleLine.split(LINE_DELIMITER);
-        for (String numberString : numbersString) {
-            numbers.add(Double.parseDouble(numberString));
+        if (quadrangleLine != null) {
+            String[] numbersString = quadrangleLine.split(LINE_DELIMITER);
+            for (String numberString : numbersString) {
+                numbers.add(Double.parseDouble(numberString));
+            }
         }
         return numbers;
     }

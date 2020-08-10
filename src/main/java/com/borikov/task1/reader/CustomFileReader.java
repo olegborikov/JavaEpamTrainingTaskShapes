@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class CustomFileReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public List<String> readFromFile(String fileName) {
+    public List<String> readText(String fileName) {
         Path path = Paths.get(fileName);
         try (Stream<String> linedTextStream = Files.lines(path)) {
             List<String> linedTextList = linedTextStream.collect(Collectors.toList());

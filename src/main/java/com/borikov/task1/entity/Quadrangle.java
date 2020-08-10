@@ -65,7 +65,7 @@ public class Quadrangle {
                 return false;
             }
         } else {
-            if (!point1.equals(quadrangle.point1)) {
+            if (!point1.equalsPoint(quadrangle.point1)) {
                 return false;
             }
         }
@@ -74,7 +74,7 @@ public class Quadrangle {
                 return false;
             }
         } else {
-            if (!point2.equals(quadrangle.point2)) {
+            if (!point2.equalsPoint(quadrangle.point2)) {
                 return false;
             }
         }
@@ -83,7 +83,7 @@ public class Quadrangle {
                 return false;
             }
         } else {
-            if (!point3.equals(quadrangle.point3)) {
+            if (!point3.equalsPoint(quadrangle.point3)) {
                 return false;
             }
         }
@@ -92,7 +92,7 @@ public class Quadrangle {
                 return false;
             }
         } else {
-            if (!point4.equals(quadrangle.point4)) {
+            if (!point4.equalsPoint(quadrangle.point4)) {
                 return false;
             }
         }
