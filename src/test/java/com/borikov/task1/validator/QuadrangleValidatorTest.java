@@ -1,5 +1,7 @@
 package com.borikov.task1.validator;
 
+import com.borikov.task1.entity.Point;
+import com.borikov.task1.entity.Quadrangle;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -55,6 +57,56 @@ public class QuadrangleValidatorTest {
     @Test(dataProvider = "isLineConformQuadrangleNegativeData")
     public void isLineConformQuadrangleNegativeTest(String line) {
         boolean actual = quadrangleValidator.isLineConformQuadrangle(line);
+        assertFalse(actual);
+    }
+
+    @DataProvider(name = "isQuadrangleCorrectPositiveData")
+    public Object[][] createIsQuadrangleCorrectPositiveData() {
+        Point point1 = new Point(1, 2);
+        Point point2 = new Point(3, 2);
+        Point point3 = new Point(99, 999);
+        Point point4 = new Point(-999, 999);
+        Quadrangle quadrangle1 = new Quadrangle(point1, point2, point3, point4);
+        Point point5 = new Point(-999, 999);
+        Point point6 = new Point(-999, 999);
+        Point point7 = new Point(-999, 999);
+        Point point8 = new Point(-999, 999);
+        Quadrangle quadrangle2 = new Quadrangle(point5, point6, point7, point8);
+        return new Object[][]{
+                {quadrangle1},
+                {quadrangle2}
+        };
+    }
+
+    @Test(dataProvider = "isQuadrangleCorrectPositiveData")
+    public void isQuadrangleCorrectPositiveTest(Quadrangle quadrangle) {
+        boolean actual = quadrangleValidator.isQuadrangleCorrect(quadrangle);
+        assertTrue(actual);
+    }
+
+    @DataProvider(name = "isQuadrangleCorrectNegativeData")
+    public Object[][] createIsQuadrangleCorrectNegativeData() {
+        Point point1 = new Point(1, 2);
+        Point point2 = new Point(3, 2);
+        Point point3 = new Point(99, 999);
+        Point point4 = new Point(-999, 1000);
+        Quadrangle quadrangle1 = new Quadrangle(point1, point2, point3, point4);
+        Point point6 = new Point(-999, 999);
+        Point point7 = new Point(-999, 999);
+        Point point8 = new Point(-999, 999);
+        Quadrangle quadrangle2 = new Quadrangle(null, point6, point7, point8);
+        Quadrangle quadrangle3 = new Quadrangle(null, null, null, null);
+        return new Object[][]{
+                {quadrangle1},
+                {quadrangle2},
+                {quadrangle3},
+                {null}
+        };
+    }
+
+    @Test(dataProvider = "isQuadrangleCorrectNegativeData")
+    public void isQuadrangleCorrectNegativeTest(Quadrangle quadrangle) {
+        boolean actual = quadrangleValidator.isQuadrangleCorrect(quadrangle);
         assertFalse(actual);
     }
 }

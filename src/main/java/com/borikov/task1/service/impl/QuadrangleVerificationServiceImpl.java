@@ -2,13 +2,23 @@ package com.borikov.task1.service.impl;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
+import com.borikov.task1.exception.IncorrectDataException;
 import com.borikov.task1.service.QuadrangleVerificationService;
+import com.borikov.task1.validator.PointValidator;
+import com.borikov.task1.validator.QuadrangleValidator;
 
-import java.math.BigDecimal;
-
-public class QuadrangleVerificationServiceImpl implements QuadrangleVerificationService {
+public class QuadrangleVerificationServiceImpl extends QuadrangleVerificationService {
     @Override
-    public boolean isPointsMakeQuadrangle(Point point1, Point point2, Point point3, Point point4) {
+    public boolean isPointsMakeQuadrangle(
+            Point point1, Point point2, Point point3, Point point4)
+            throws IncorrectDataException {
+        PointValidator pointValidator = new PointValidator();
+        if (pointValidator.isPointInLimit(point1)
+                && pointValidator.isPointInLimit(point2)
+                && pointValidator.isPointInLimit(point3)
+                && pointValidator.isPointInLimit(point4)) {
+            throw new IncorrectDataException("Data is incorrect");
+        }
         return !(isPointsInLine(point1, point2, point3)
                 || isPointsInLine(point1, point2, point4)
                 || isPointsInLine(point1, point3, point4)
@@ -16,12 +26,20 @@ public class QuadrangleVerificationServiceImpl implements QuadrangleVerification
     }
 
     @Override
-    public boolean isQuadrangleConvex(Quadrangle quadrangle) {
+    public boolean isQuadrangleConvex(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+        QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+        if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
+            throw new IncorrectDataException("Data is incorrect");
+        }
         return false;
     }
 
     @Override
-    public boolean isQuadrangleSquare(Quadrangle quadrangle) {
+    public boolean isQuadrangleSquare(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+        QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+        if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
+            throw new IncorrectDataException("Data is incorrect");
+        }
         boolean result = false;
         if (isQuadrangleRhombus(quadrangle)) {
             double side1 = calculateDistanceBetweenPoints(
@@ -36,7 +54,11 @@ public class QuadrangleVerificationServiceImpl implements QuadrangleVerification
     }
 
     @Override
-    public boolean isQuadrangleRhombus(Quadrangle quadrangle) {
+    public boolean isQuadrangleRhombus(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+        QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+        if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
+            throw new IncorrectDataException("Data is incorrect");
+        }
         double side1 = calculateDistanceBetweenPoints(
                 quadrangle.getPoint1(), quadrangle.getPoint2());
         double side2 = calculateDistanceBetweenPoints(
@@ -49,7 +71,11 @@ public class QuadrangleVerificationServiceImpl implements QuadrangleVerification
     }
 
     @Override
-    public boolean isQuadrangleTrapezoid(Quadrangle quadrangle) {
+    public boolean isQuadrangleTrapezoid(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+        QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+        if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
+            throw new IncorrectDataException("Data is incorrect");
+        }
         return false;
     }
 

@@ -2,15 +2,22 @@ package com.borikov.task1.service;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
+import com.borikov.task1.exception.IncorrectDataException;
 
-public interface QuadrangleVerificationService extends QuadrangleService {
-    public boolean isPointsMakeQuadrangle(Point point1, Point point2, Point point3, Point point4);
+public abstract class QuadrangleVerificationService extends QuadrangleService {
+    public abstract boolean isPointsMakeQuadrangle(
+            Point point1, Point point2, Point point3, Point point4)
+            throws IncorrectDataException;
 
-    public boolean isQuadrangleConvex(Quadrangle quadrangle);
+    public abstract boolean isQuadrangleConvex(Quadrangle quadrangle)
+            throws IncorrectDataException;
 
-    public boolean isQuadrangleSquare(Quadrangle quadrangle);
+    public abstract boolean isQuadrangleSquare(Quadrangle quadrangle)
+            throws IncorrectDataException;
 
-    public boolean isQuadrangleRhombus(Quadrangle quadrangle);
+    public abstract boolean isQuadrangleRhombus(Quadrangle quadrangle)
+            throws IncorrectDataException;
 
-    public boolean isQuadrangleTrapezoid(Quadrangle quadrangle);
+    public abstract boolean isQuadrangleTrapezoid(Quadrangle quadrangle)
+            throws IncorrectDataException;
 }

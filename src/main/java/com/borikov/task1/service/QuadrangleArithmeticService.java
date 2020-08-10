@@ -1,9 +1,12 @@
 package com.borikov.task1.service;
 
 import com.borikov.task1.entity.Quadrangle;
+import com.borikov.task1.exception.IncorrectDataException;
 
-public interface QuadrangleArithmeticService extends QuadrangleService {
-    public double calculateSquare(Quadrangle quadrangle);
+public abstract class QuadrangleArithmeticService extends QuadrangleService {
+    public abstract double calculateSquare(Quadrangle quadrangle)
+            throws IncorrectDataException;
 
-    public double calculatePerimeter(Quadrangle quadrangle);
+    public abstract double calculatePerimeter(Quadrangle quadrangle)
+            throws IncorrectDataException;
 }
