@@ -1,8 +1,7 @@
 package com.borikov.task1.repository;
 
+import com.borikov.task1.creator.QuadrangleCreator;
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.factory.QuadrangleCreator;
-import com.borikov.task1.factory.impl.QuadrangleCreatorImpl;
 import com.borikov.task1.specification.Specification;
 
 import java.util.Collections;
@@ -21,8 +20,8 @@ public class QuadrangleRepository {
     public static QuadrangleRepository getInstance() {
         if (instance == null) {
             instance = new QuadrangleRepository();
-            QuadrangleCreator quadrangleCreator = new QuadrangleCreatorImpl();
-            quadrangles = quadrangleCreator.createQuadrangles(FILE_NAME);
+            QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
+            quadrangles = quadrangleCreator.createQuadrangle(FILE_NAME);
         }
         return instance;
     }
@@ -32,20 +31,16 @@ public class QuadrangleRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Quadrangle> query(Comparator<Quadrangle> comparator) {
+    public List<Quadrangle> sort(Comparator<Quadrangle> comparator) {
         return quadrangles.stream().sorted(comparator).collect(Collectors.toList());
     }
 
     public boolean add(Quadrangle quadrangle) {
-        return false;
+        return quadrangles.add(quadrangle);
     }
 
     public boolean remove(Quadrangle quadrangle) {
-        return false;
-    }
-
-    public boolean update(Quadrangle quadrangle) {
-        return false;
+        return quadrangles.remove(quadrangle);
     }
 
     public List<Quadrangle> get() {

@@ -1,4 +1,5 @@
-package com.borikov.task1.factory.impl;
+/*
+package com.borikov.task1.creator;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
@@ -13,11 +14,11 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 public class QuadrangleCreatorImplTest {
-    private QuadrangleCreatorImpl quadrangleCreator;
+    private QuadrangleCreator quadrangleCreator;
 
     @BeforeClass
     public void setUp() {
-        quadrangleCreator = new QuadrangleCreatorImpl();
+        quadrangleCreator = new QuadrangleCreator();
     }
 
     @AfterClass
@@ -48,7 +49,7 @@ public class QuadrangleCreatorImplTest {
     @Test(dataProvider = "createQuadranglesPositiveData")
     public void createQuadranglesPositiveTest(
             String fileName, List<Quadrangle> expected) {
-        List<Quadrangle> actual = quadrangleCreator.createQuadrangles(fileName);
+        List<Quadrangle> actual = quadrangleCreator.createQuadrangle(fileName);
         boolean result = equalsQuadrangleList(actual, expected);
         assertTrue(result);
     }
@@ -68,7 +69,7 @@ public class QuadrangleCreatorImplTest {
         expected.add(createQuadrangle(0, 3.1, 1.2, 0, 0, -3.1, -1.2, 0));
         expected.add(createQuadrangle(-1.0, -1, -1, -3, -3., -3, -3.0, -1));
         expected.add(createQuadrangle(-1.0, -1, -1, -3, -3., -3, -3.0, -1));
-        List<Quadrangle> actual = quadrangleCreator.createQuadrangles(fileName);
+        List<Quadrangle> actual = quadrangleCreator.createQuadrangle(fileName);
         boolean result = equalsQuadrangleList(actual, expected);
         assertFalse(result);
     }
@@ -76,7 +77,7 @@ public class QuadrangleCreatorImplTest {
     @Test(expectedExceptions = RuntimeException.class)
     public void createQuadranglesExceptionTest() {
         String filename = "data.txt";
-        quadrangleCreator.createQuadrangles(filename);
+        quadrangleCreator.createQuadrangle(filename);
     }
 
     private boolean equalsQuadrangleList(
@@ -102,3 +103,4 @@ public class QuadrangleCreatorImplTest {
         return new Quadrangle(point1, point2, point3, point4);
     }
 }
+*/

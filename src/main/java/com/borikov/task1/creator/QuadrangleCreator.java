@@ -1,8 +1,7 @@
-package com.borikov.task1.factory.impl;
+package com.borikov.task1.creator;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.factory.QuadrangleCreator;
 import com.borikov.task1.parser.DataParser;
 import com.borikov.task1.reader.CustomFileReader;
 import com.borikov.task1.validator.PointValidator;
@@ -14,11 +13,10 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuadrangleCreatorImpl implements QuadrangleCreator {
+public class QuadrangleCreator {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @Override
-    public List<Quadrangle> createQuadrangles(String fileName) {
+    public List<Quadrangle> createQuadrangle(String fileName) {// TODO: 11.08.2020 передавать данные и создавать объект, не парсить, не валидировать
         List<Quadrangle> quadrangles = new ArrayList<>();
         if (fileName != null) {
             CustomFileReader textFileReader = new CustomFileReader();
