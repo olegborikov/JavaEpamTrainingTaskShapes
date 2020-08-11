@@ -1,5 +1,7 @@
 package com.borikov.task1.entity;
 
+import com.borikov.task1.observer.Observer;
+import com.borikov.task1.observer.impl.QuadrangleDataObserver;
 import com.borikov.task1.util.IdGenerator;
 
 public class Quadrangle {
@@ -8,6 +10,7 @@ public class Quadrangle {
     private Point point2;
     private Point point3;
     private Point point4;
+    private Observer<QuadrangleEvent> observer = new QuadrangleDataObserver();
 
     public Quadrangle(Point point1, Point point2, Point point3, Point point4) {
         quadrangleId = IdGenerator.generateId();
@@ -15,6 +18,7 @@ public class Quadrangle {
         this.point2 = point2;
         this.point3 = point3;
         this.point4 = point4;
+        observer.actionPerformed(new QuadrangleEvent(this));
     }
 
     public long getQuadrangleId() {
@@ -27,6 +31,7 @@ public class Quadrangle {
 
     public void setPoint1(Point point1) {
         this.point1 = point1;
+        observer.actionPerformed(new QuadrangleEvent(this));
     }
 
     public Point getPoint2() {
@@ -35,6 +40,7 @@ public class Quadrangle {
 
     public void setPoint2(Point point2) {
         this.point2 = point2;
+        observer.actionPerformed(new QuadrangleEvent(this));
     }
 
     public Point getPoint3() {
@@ -43,6 +49,7 @@ public class Quadrangle {
 
     public void setPoint3(Point point3) {
         this.point3 = point3;
+        observer.actionPerformed(new QuadrangleEvent(this));
     }
 
     public Point getPoint4() {
@@ -51,6 +58,7 @@ public class Quadrangle {
 
     public void setPoint4(Point point4) {
         this.point4 = point4;
+        observer.actionPerformed(new QuadrangleEvent(this));
     }
 
     public boolean equalsQuadrangle(Quadrangle quadrangle) {

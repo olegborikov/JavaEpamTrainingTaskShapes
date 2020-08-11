@@ -43,7 +43,7 @@ public class QuadrangleRepository {
         return quadrangles.remove(quadrangle);
     }
 
-    public List<Quadrangle> get() {
+    public List<Quadrangle> getAll() {
         return Collections.unmodifiableList(quadrangles);
     }
 }

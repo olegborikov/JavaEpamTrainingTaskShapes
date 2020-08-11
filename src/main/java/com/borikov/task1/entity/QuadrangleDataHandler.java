@@ -1,19 +1,11 @@
 package com.borikov.task1.entity;
 
-public class QuadrangleDataKeeper {
-    private double square;
+public class QuadrangleDataHandler {
     private double perimeter;
+    private double square;
 
-    public QuadrangleDataKeeper(double square, double perimeter) {
-        this.square = square;
+    public QuadrangleDataHandler(double perimeter, double square) {
         this.perimeter = perimeter;
-    }
-
-    public double getSquare() {
-        return square;
-    }
-
-    public void setSquare(double square) {
         this.square = square;
     }
 
@@ -25,6 +17,14 @@ public class QuadrangleDataKeeper {
         this.perimeter = perimeter;
     }
 
+    public double getSquare() {
+        return square;
+    }
+
+    public void setSquare(double square) {
+        this.square = square;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -33,11 +33,11 @@ public class QuadrangleDataKeeper {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        QuadrangleDataKeeper quadrangleDataKeeper = (QuadrangleDataKeeper) o;
-        if (Double.compare(square, quadrangleDataKeeper.square) != 0) {
+        QuadrangleDataHandler quadrangleDataHandler = (QuadrangleDataHandler) o;
+        if (Double.compare(perimeter, quadrangleDataHandler.perimeter) != 0) {
             return false;
         }
-        if (Double.compare(perimeter, quadrangleDataKeeper.perimeter) != 0) {
+        if (Double.compare(square, quadrangleDataHandler.square) != 0) {
             return false;
         }
         return true;
@@ -45,16 +45,16 @@ public class QuadrangleDataKeeper {
 
     @Override
     public int hashCode() {
-        int result = 31 * Double.valueOf(square).hashCode();
-        result = result + Double.valueOf(perimeter).hashCode();
+        int result = 31 * Double.valueOf(perimeter).hashCode();
+        result = result + Double.valueOf(square).hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("QuadrangleDataKeeper{");
-        sb.append("square=").append(square);
-        sb.append(", perimeter=").append(perimeter);
+        sb.append("perimeter=").append(perimeter);
+        sb.append(", square=").append(square);
         sb.append('}');
         return sb.toString();
     }

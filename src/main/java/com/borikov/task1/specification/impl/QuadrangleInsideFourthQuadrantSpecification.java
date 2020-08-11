@@ -1,7 +1,8 @@
-package com.borikov.task1.specification;
+package com.borikov.task1.specification.impl;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
+import com.borikov.task1.specification.Specification;
 
 public class QuadrangleInsideFourthQuadrantSpecification implements Specification {
     private static final double MIN_COORDINATE = 0;

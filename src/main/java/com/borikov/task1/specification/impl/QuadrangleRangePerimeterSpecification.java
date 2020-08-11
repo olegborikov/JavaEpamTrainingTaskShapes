@@ -1,9 +1,10 @@
-package com.borikov.task1.specification;
+package com.borikov.task1.specification.impl;
 
 import com.borikov.task1.entity.Quadrangle;
 import com.borikov.task1.exception.IncorrectDataException;
 import com.borikov.task1.service.QuadrangleArithmeticService;
 import com.borikov.task1.service.impl.QuadrangleArithmeticServiceImpl;
+import com.borikov.task1.specification.Specification;
 
 public class QuadrangleRangePerimeterSpecification implements Specification {
     private double minPerimeter;
