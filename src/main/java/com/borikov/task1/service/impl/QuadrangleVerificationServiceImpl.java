@@ -26,16 +26,23 @@ public class QuadrangleVerificationServiceImpl extends QuadrangleVerificationSer
     }
 
     @Override
-    public boolean isQuadrangleConvex(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+    public boolean isQuadrangleConvex(Quadrangle quadrangle) throws IncorrectDataException {
         QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
         if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
             throw new IncorrectDataException("Data is incorrect");
         }
-        return false;
+        Point point1 = quadrangle.getPoint1();
+        Point point2 = quadrangle.getPoint2();
+        Point point3 = quadrangle.getPoint3();
+        Point point4 = quadrangle.getPoint4();
+        return ((calculateVectorComposition(point1, point2, point4) > 0 && calculateVectorComposition(point3, point2, point4) < 0)
+                || (calculateVectorComposition(point1, point2, point4) < 0 && calculateVectorComposition(point3, point2, point4) > 0))
+                && ((calculateVectorComposition(point4, point1, point3) > 0 && calculateVectorComposition(point2, point1, point3) < 0)
+                || (calculateVectorComposition(point4, point1, point3) < 0 && calculateVectorComposition(point2, point2, point3) > 0));
     }
 
     @Override
-    public boolean isQuadrangleSquare(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+    public boolean isQuadrangleSquare(Quadrangle quadrangle) throws IncorrectDataException {
         QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
         if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
             throw new IncorrectDataException("Data is incorrect");
@@ -48,13 +55,13 @@ public class QuadrangleVerificationServiceImpl extends QuadrangleVerificationSer
                     quadrangle.getPoint1(), quadrangle.getPoint4());
             double side3 = calculateDistanceBetweenPoints(
                     quadrangle.getPoint2(), quadrangle.getPoint4());
-            result = calculateCosine(side1, side2, side3) == 1;
+            result = calculateCosine(side1, side2, side3) == 0;
         }
         return result;
     }
 
     @Override
-    public boolean isQuadrangleRhombus(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+    public boolean isQuadrangleRhombus(Quadrangle quadrangle) throws IncorrectDataException {
         QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
         if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
             throw new IncorrectDataException("Data is incorrect");
@@ -71,12 +78,17 @@ public class QuadrangleVerificationServiceImpl extends QuadrangleVerificationSer
     }
 
     @Override
-    public boolean isQuadrangleTrapezoid(Quadrangle quadrangle) throws IncorrectDataException {// TODO: 10.08.2020 refactor
+    public boolean isQuadrangleTrapezoid(Quadrangle quadrangle) throws IncorrectDataException {
         QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
         if (!quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
             throw new IncorrectDataException("Data is incorrect");
         }
-        return false;
+        Point point1 = quadrangle.getPoint1();
+        Point point2 = quadrangle.getPoint2();
+        Point point3 = quadrangle.getPoint3();
+        Point point4 = quadrangle.getPoint4();
+        return (isLinesParallelByPoints(point1, point4, point2, point3) && !isLinesParallelByPoints(point1, point2, point4, point3))
+                || (isLinesParallelByPoints(point1, point2, point4, point3) && !isLinesParallelByPoints(point1, point4, point2, point3));
     }
 
     private boolean isPointsInLine(Point point1, Point point2, Point point3) {
@@ -84,5 +96,16 @@ public class QuadrangleVerificationServiceImpl extends QuadrangleVerificationSer
                 * (point2.getY() - point1.getY())
                 == (point3.getY() - point1.getY())
                 * (point2.getX() - point1.getX());
+    }
+
+    private boolean isLinesParallelByPoints(Point point1Line1, Point point2Line1, Point point1Line2, Point point2Line2) {
+        double angleCoefficientPoint1 = (point2Line1.getY() - point1Line1.getY()) / (point2Line1.getX() - point1Line1.getX());
+        double angleCoefficientPoint2 = (point2Line2.getY() - point1Line2.getY()) / (point2Line2.getX() - point1Line2.getX());
+        return angleCoefficientPoint1 == angleCoefficientPoint2;
+    }
+
+
+    private double calculateVectorComposition(Point point1, Point point2, Point point3) {
+        return ((point1.getX() - point2.getX())) * (point3.getY() - point2.getY()) - ((point3.getX() - point2.getX()) * (point1.getY() - point2.getY()));
     }
 }

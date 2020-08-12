@@ -4,8 +4,8 @@ import com.borikov.task1.util.IdGenerator;
 
 public class Point {
     private final long pointId;
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
 
     public Point(double x, double y) {
         pointId = IdGenerator.generateId();
@@ -21,16 +21,8 @@ public class Point {
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public double getY() {
         return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
     }
 
     public boolean equalsPoint(Point point) {
