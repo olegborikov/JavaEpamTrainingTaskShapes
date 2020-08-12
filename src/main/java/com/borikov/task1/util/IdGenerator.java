@@ -9,10 +9,10 @@ public class IdGenerator {
     }
 
     public static long generateId() {
-        if (currentId + 1 > MAX_ID) {
-            currentId = MIN_ID;
-        } else {
+        if (currentId + 1 < MAX_ID) {
             currentId++;
+        } else {
+            currentId = MIN_ID;
         }
         return currentId;
     }

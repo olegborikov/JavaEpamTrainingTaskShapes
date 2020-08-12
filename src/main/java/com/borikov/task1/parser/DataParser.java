@@ -6,10 +6,10 @@ import java.util.List;
 public class DataParser {
     private static final String LINE_DELIMITER = "\u0020";
 
-    public List<Double> parseLineToNumberList(String quadrangleLine) {
+    public List<Double> parseLineToNumberList(String line) {
         List<Double> numbers = new ArrayList<>();
-        if (quadrangleLine != null) {
-            String[] numbersString = quadrangleLine.split(LINE_DELIMITER);
+        if (line != null) {
+            String[] numbersString = line.split(LINE_DELIMITER);
             for (String numberString : numbersString) {
                 numbers.add(Double.parseDouble(numberString));
             }

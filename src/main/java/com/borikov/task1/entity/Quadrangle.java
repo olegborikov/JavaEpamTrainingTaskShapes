@@ -1,6 +1,7 @@
 package com.borikov.task1.entity;
 
 import com.borikov.task1.observer.Observer;
+import com.borikov.task1.observer.QuadrangleEvent;
 import com.borikov.task1.observer.impl.QuadrangleDataObserver;
 import com.borikov.task1.util.IdGenerator;
 
@@ -10,7 +11,7 @@ public class Quadrangle {
     private Point point2;
     private Point point3;
     private Point point4;
-    private Observer<QuadrangleEvent> observer = new QuadrangleDataObserver();
+    private final Observer<QuadrangleEvent> observer = new QuadrangleDataObserver();
 
     public Quadrangle(Point point1, Point point2, Point point3, Point point4) {
         quadrangleId = IdGenerator.generateId();

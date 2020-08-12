@@ -37,16 +37,15 @@ public class DataParserTest {
         expected2.add(2.3);
         expected2.add(0.0);
         expected2.add(-0.3);
-        String quadrangleLine3 = "2.0 2.0 2.0 2.0 2.0 2.0 2.0 2.0";
+        String quadrangleLine3 = "2.0 2.0 2. 0.0 .0 0. .1";
         List<Double> expected3 = new ArrayList<>();
         expected3.add(2.0);
         expected3.add(2.0);
         expected3.add(2.0);
-        expected3.add(2.0);
-        expected3.add(2.0);
-        expected3.add(2.0);
-        expected3.add(2.0);
-        expected3.add(2.0);
+        expected3.add(0.0);
+        expected3.add(0.0);
+        expected3.add(0.0);
+        expected3.add(0.1);
         return new Object[][]{
                 {quadrangleLine1, expected1},
                 {quadrangleLine2, expected2},
@@ -72,7 +71,7 @@ public class DataParserTest {
         expected2.add(2.3);
         expected2.add(0.0);
         expected2.add(-3.0);
-        String quadrangleLine3 = "2.0 2.0 2.0";
+        String quadrangleLine3 = "2.0 2.0 2.";
         List<Double> expected3 = new ArrayList<>();
         expected3.add(2.0);
         return new Object[][]{

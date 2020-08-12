@@ -4,17 +4,21 @@ import com.borikov.task1.entity.Quadrangle;
 import com.borikov.task1.entity.QuadrangleDataHandler;
 import com.borikov.task1.exception.IncorrectDataException;
 import com.borikov.task1.observer.Observer;
-import com.borikov.task1.entity.QuadrangleEvent;
+import com.borikov.task1.observer.QuadrangleEvent;
 import com.borikov.task1.service.QuadrangleArithmeticService;
 import com.borikov.task1.service.impl.QuadrangleArithmeticServiceImpl;
 import com.borikov.task1.warehouse.Warehouse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class QuadrangleDataObserver implements Observer<QuadrangleEvent> {
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public void actionPerformed(QuadrangleEvent quadrangleEvent) {
+        Quadrangle quadrangle = quadrangleEvent.getSource();
         try {
-            Quadrangle quadrangle = quadrangleEvent.getSource();
             QuadrangleArithmeticService quadrangleArithmeticService = new QuadrangleArithmeticServiceImpl();
             double quadranglePerimeter = quadrangleArithmeticService.calculatePerimeter(quadrangle);
             double quadrangleSquare = quadrangleArithmeticService.calculateSquare(quadrangle);
@@ -22,7 +26,7 @@ public class QuadrangleDataObserver implements Observer<QuadrangleEvent> {
             Warehouse warehouse = Warehouse.getInstance();
             warehouse.put(quadrangle.getQuadrangleId(), quadrangleDataKeeper);
         } catch (IncorrectDataException e) {
-            // TODO: 11.08.2020 log
+            LOGGER.log(Level.INFO, "{} wasn't add to warehouse", quadrangle, e);
         }
     }
 }

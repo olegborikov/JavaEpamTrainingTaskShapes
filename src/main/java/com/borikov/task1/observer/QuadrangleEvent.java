@@ -1,4 +1,4 @@
-package com.borikov.task1.entity;
+package com.borikov.task1.observer;
 
 import com.borikov.task1.entity.Quadrangle;
 

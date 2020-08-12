@@ -24,7 +24,7 @@ public class CustomFileReaderTest {
 
     @Test
     public void readTextPositiveTest() {
-        String fileName = "data/data.txt";
+        String fileName = "input/data.txt";
         List<String> expected = new ArrayList<>();
         expected.add("2 0.0 .0 3 2.0 6. 4 3.0");
         expected.add("2 0.0 .0 3 2.0 6. 4");
@@ -48,7 +48,7 @@ public class CustomFileReaderTest {
 
     @Test
     public void readTextNegativeTest() {
-        String fileName = "data/data.txt";
+        String fileName = "input/data.txt";
         List<String> expected = new ArrayList<>();
         expected.add("2 0.0 .0 3 2.0 6. 4 3.0");
         expected.add("2 0.0 .0 3 2.0 6. 4");
@@ -57,7 +57,7 @@ public class CustomFileReaderTest {
         expected.add("3 0.0 -2 .0 -1 2 2.0 2.");
         expected.add("1..1 .2 3.5 1 2. 3 4.4 1");
         expected.add("-3.25 -3 1.2 4.4 7.1 1 6 -4.6");
-        expected.add("\n");
+        expected.add(" ");
         expected.add("0. 0 3 0 6. 0.0 3 3");
         expected.add("-3.25 3.25 1 1 2.v4 4.3 2.1 2.2");
         expected.add("0 0 2 3 6 3 4 0.0");
