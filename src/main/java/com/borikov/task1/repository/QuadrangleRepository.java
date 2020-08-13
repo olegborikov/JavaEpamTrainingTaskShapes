@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class QuadrangleRepository {
     private static QuadrangleRepository instance;
     private static List<Quadrangle> quadrangles;
-    private static final String FILE_NAME = "data/data.txt";
+    private static final String FILE_NAME = "input/data.txt";
 
     private QuadrangleRepository() {
     }
@@ -21,7 +21,7 @@ public class QuadrangleRepository {
         if (instance == null) {
             instance = new QuadrangleRepository();
             QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
-            quadrangles = quadrangleCreator.createQuadrangle(FILE_NAME);
+            quadrangles = quadrangleCreator.createQuadranglesFromFile(FILE_NAME);
         }
         return instance;
     }

@@ -13,10 +13,10 @@ public class QuadrangleInsideThirdQuadrantSpecification implements Specification
         Point point2 = quadrangle.getPoint2();
         Point point3 = quadrangle.getPoint3();
         Point point4 = quadrangle.getPoint4();
-        return point1.getX() < MIN_COORDINATE && point1.getY() < MIN_COORDINATE
-                && point2.getX() < MIN_COORDINATE && point2.getY() < MIN_COORDINATE
-                && point3.getX() < MIN_COORDINATE && point3.getY() < MIN_COORDINATE
-                && point4.getX() < MIN_COORDINATE && point4.getY() < MIN_COORDINATE;
+        return point1.getX() <= MIN_COORDINATE && point1.getY() <= MIN_COORDINATE
+                && point2.getX() <= MIN_COORDINATE && point2.getY() <= MIN_COORDINATE
+                && point3.getX() <= MIN_COORDINATE && point3.getY() <= MIN_COORDINATE
+                && point4.getX() <= MIN_COORDINATE && point4.getY() <= MIN_COORDINATE;
     }
 }
 

@@ -5,27 +5,34 @@ import com.borikov.task1.exception.IncorrectDataException;
 import com.borikov.task1.service.QuadrangleArithmeticService;
 import com.borikov.task1.service.impl.QuadrangleArithmeticServiceImpl;
 import com.borikov.task1.specification.Specification;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class QuadrangleRangePerimeterSpecification implements Specification {
-    private double minPerimeter;
-    private double maxPerimeter;
+    private final double minPerimeter;
+    private final double maxPerimeter;
+    private static final Logger LOGGER = LogManager.getLogger();
 
-    public QuadrangleRangePerimeterSpecification(double minPerimeter, double maxPerimeter) {
+    public QuadrangleRangePerimeterSpecification(
+            double minPerimeter, double maxPerimeter) {
         this.minPerimeter = minPerimeter;
         this.maxPerimeter = maxPerimeter;
     }
 
     @Override
     public boolean test(Quadrangle quadrangle) {
-        boolean result;
+        boolean result = false;
         try {
-            QuadrangleArithmeticService quadrangleArithmeticService = new QuadrangleArithmeticServiceImpl();
-            double quadranglePerimeter = quadrangleArithmeticService.calculatePerimeter(quadrangle);
-            result = quadranglePerimeter >= minPerimeter && quadranglePerimeter <= maxPerimeter;
+            QuadrangleArithmeticService quadrangleArithmeticService =
+                    new QuadrangleArithmeticServiceImpl();
+            double quadranglePerimeter =
+                    quadrangleArithmeticService.calculatePerimeter(quadrangle);
+            result = quadranglePerimeter >= minPerimeter
+                    && quadranglePerimeter <= maxPerimeter;
         } catch (IncorrectDataException e) {
-            result = false;
+            LOGGER.log(Level.INFO, "Error with quadrangle: {}", quadrangle, e);
         }
         return result;
     }
 }
-

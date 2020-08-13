@@ -19,14 +19,18 @@ public class QuadrangleDataObserver implements Observer<QuadrangleEvent> {
     public void actionPerformed(QuadrangleEvent quadrangleEvent) {
         Quadrangle quadrangle = quadrangleEvent.getSource();
         try {
-            QuadrangleArithmeticService quadrangleArithmeticService = new QuadrangleArithmeticServiceImpl();
-            double quadranglePerimeter = quadrangleArithmeticService.calculatePerimeter(quadrangle);
-            double quadrangleSquare = quadrangleArithmeticService.calculateSquare(quadrangle);
-            QuadrangleDataHandler quadrangleDataKeeper = new QuadrangleDataHandler(quadranglePerimeter, quadrangleSquare);
+            QuadrangleArithmeticService quadrangleArithmeticService = // TODO: 13.08.2020 is service allow here?
+                    new QuadrangleArithmeticServiceImpl();
+            double quadranglePerimeter =
+                    quadrangleArithmeticService.calculatePerimeter(quadrangle);
+            double quadrangleSquare =
+                    quadrangleArithmeticService.calculateSquare(quadrangle);
+            QuadrangleDataHandler quadrangleDataKeeper =
+                    new QuadrangleDataHandler(quadranglePerimeter, quadrangleSquare);
             Warehouse warehouse = Warehouse.getInstance();
             warehouse.put(quadrangle.getQuadrangleId(), quadrangleDataKeeper);
         } catch (IncorrectDataException e) {
-            LOGGER.log(Level.INFO, "{} wasn't add to warehouse", quadrangle, e);
+            LOGGER.log(Level.INFO, "Quadrangle wasn't add to warehouse: {}", quadrangle, e);
         }
     }
 }
