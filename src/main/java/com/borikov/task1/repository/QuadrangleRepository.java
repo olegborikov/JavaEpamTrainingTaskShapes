@@ -21,7 +21,7 @@ public class QuadrangleRepository {
         if (instance == null) {
             instance = new QuadrangleRepository();
             QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
-            quadrangles = quadrangleCreator.createQuadranglesFromFile(FILE_NAME);
+            quadrangles = quadrangleCreator.createQuadranglesFromFile(FILE_NAME);// TODO: 13.08.2020 can i fill like that? 
         }
         return instance;
     }
