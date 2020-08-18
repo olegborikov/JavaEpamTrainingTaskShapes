@@ -30,7 +30,7 @@ public class QuadrangleRangeSquareSpecification implements Specification {
             result = quadrangleSquare >= minSquare
                     && quadrangleSquare <= maxSquare;
         } catch (IncorrectDataException e) {
-            LOGGER.log(Level.INFO, "Error with quadrangle: {}", quadrangle, e);
+            LOGGER.log(Level.ERROR, "Error with quadrangle: {}", quadrangle, e);
         }
         return result;
     }

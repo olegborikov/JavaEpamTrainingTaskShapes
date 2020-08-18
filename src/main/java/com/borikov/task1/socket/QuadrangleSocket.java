@@ -1,54 +1,43 @@
 package com.borikov.task1.socket;
 
-import java.io.BufferedReader;
+import com.borikov.task1.creator.QuadrangleCreator;
+import com.borikov.task1.entity.Quadrangle;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class QuadrangleSocket {
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final String FILE_NAME = "input/data.txt";
+
     public static void main(String[] args) {
+        QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
         try (ServerSocket serverSocket = new ServerSocket(9000)) {
-            System.out.println("Server started!");
-            int a = 0;
-            while (a < 10) {
-                // ожидаем подключения
+            LOGGER.log(Level.INFO, "Server started!");
+            while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println("Client connected!");
-
-                // для подключившегося клиента открываем потоки
-                // чтения и записи
-                try (BufferedReader input =
-                             new BufferedReader(new InputStreamReader(socket.getInputStream(),
-                                     StandardCharsets.UTF_8));
-                     PrintWriter output = new PrintWriter(socket.getOutputStream())) {
-
-                    // ждем первой строки запроса
-                    while (!input.ready()) ;
-
-                    // считываем и печатаем все что было отправлено клиентом
-                    System.out.println();
-                    while (input.ready()) {
-                        System.out.println(input.readLine());
-                    }
-                    String answer = "answer";
-                    // отправляем ответ
+                LOGGER.log(Level.INFO, "Client connected!");
+                try (PrintWriter output = new PrintWriter(socket.getOutputStream())) {
+                    List<Quadrangle> quadrangles =
+                            quadrangleCreator.createQuadranglesFromFile(FILE_NAME);
                     output.println("HTTP/1.1 200 OK");
                     output.println("Content-Type: text/html; charset=utf-8");
                     output.println("");
-                    output.println(answer);
-                    // output.
+                    for (Quadrangle quadrangle : quadrangles) {
+                        output.println(quadrangle + "<br>");
+                    }
                     output.flush();
-                    // по окончанию выполнения блока try-with-resources потоки,
-                    // а вместе с ними и соединение будут закрыты
-                    System.out.println("Client disconnected!");
-                    a++;
+                    LOGGER.log(Level.INFO, "Client disconnected!");
                 }
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.log(Level.ERROR, "Error while opening server socket", e);
         }
     }
 }
