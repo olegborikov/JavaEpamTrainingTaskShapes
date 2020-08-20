@@ -1,17 +1,20 @@
 package com.borikov.task1.entity;
 
-import com.borikov.task1.observer.Observer;
 import com.borikov.task1.observer.QuadrangleEvent;
-import com.borikov.task1.observer.impl.QuadrangleDataObserver;
+import com.borikov.task1.observer.QuadrangleObservable;
+import com.borikov.task1.observer.QuadrangleObserver;
 import com.borikov.task1.util.IdGenerator;
 
-public class Quadrangle {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Quadrangle implements QuadrangleObservable {
     private final long quadrangleId;
     private Point point1;
     private Point point2;
     private Point point3;
     private Point point4;
-    private final Observer<QuadrangleEvent> observer = new QuadrangleDataObserver();
+    private List<QuadrangleObserver> observers = new ArrayList<>();
 
     public Quadrangle(Point point1, Point point2, Point point3, Point point4) {
         quadrangleId = IdGenerator.generateId();
@@ -19,7 +22,6 @@ public class Quadrangle {
         this.point2 = point2;
         this.point3 = point3;
         this.point4 = point4;
-        observer.actionPerformed(new QuadrangleEvent(this));
     }
 
     public long getQuadrangleId() {
@@ -32,7 +34,7 @@ public class Quadrangle {
 
     public void setPoint1(Point point1) {
         this.point1 = point1;
-        observer.actionPerformed(new QuadrangleEvent(this));
+        notifyObservers();
     }
 
     public Point getPoint2() {
@@ -41,7 +43,7 @@ public class Quadrangle {
 
     public void setPoint2(Point point2) {
         this.point2 = point2;
-        observer.actionPerformed(new QuadrangleEvent(this));
+        notifyObservers();
     }
 
     public Point getPoint3() {
@@ -50,7 +52,7 @@ public class Quadrangle {
 
     public void setPoint3(Point point3) {
         this.point3 = point3;
-        observer.actionPerformed(new QuadrangleEvent(this));
+        notifyObservers();
     }
 
     public Point getPoint4() {
@@ -59,7 +61,7 @@ public class Quadrangle {
 
     public void setPoint4(Point point4) {
         this.point4 = point4;
-        observer.actionPerformed(new QuadrangleEvent(this));
+        notifyObservers();
     }
 
     public boolean equalsQuadrangle(Quadrangle quadrangle) {
@@ -179,5 +181,22 @@ public class Quadrangle {
         sb.append(", point4=").append(point4);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public void attach(QuadrangleObserver quadrangleObserver) {
+        observers.add(quadrangleObserver);
+    }
+
+    @Override
+    public void detach(QuadrangleObserver quadrangleObserver) {
+        observers.remove(quadrangleObserver);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (QuadrangleObserver observer : observers) {
+            observer.actionPerformed(new QuadrangleEvent(this));
+        }
     }
 }
