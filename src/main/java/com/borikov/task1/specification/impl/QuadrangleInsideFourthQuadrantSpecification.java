@@ -2,13 +2,13 @@ package com.borikov.task1.specification.impl;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.Specification;
+import com.borikov.task1.specification.QuadrangleSpecification;
 
-public class QuadrangleInsideFourthQuadrantSpecification implements Specification {
+public class QuadrangleInsideFourthQuadrantSpecification implements QuadrangleSpecification {
     private static final double MIN_COORDINATE = 0;
 
     @Override
-    public boolean test(Quadrangle quadrangle) {
+    public boolean specify(Quadrangle quadrangle) {
         Point point1 = quadrangle.getPoint1();
         Point point2 = quadrangle.getPoint2();
         Point point3 = quadrangle.getPoint3();

@@ -49,8 +49,7 @@ public class DataParserTest {
         return new Object[][]{
                 {quadrangleLine1, expected1},
                 {quadrangleLine2, expected2},
-                {quadrangleLine3, expected3},
-                {null, new ArrayList<>()},
+                {quadrangleLine3, expected3}
         };
     }
 

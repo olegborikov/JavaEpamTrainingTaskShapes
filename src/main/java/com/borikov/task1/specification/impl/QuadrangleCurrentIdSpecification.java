@@ -1,9 +1,9 @@
 package com.borikov.task1.specification.impl;
 
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.Specification;
+import com.borikov.task1.specification.QuadrangleSpecification;
 
-public class QuadrangleCurrentIdSpecification implements Specification {
+public class QuadrangleCurrentIdSpecification implements QuadrangleSpecification {
     private final long currentId;
 
     public QuadrangleCurrentIdSpecification(long currentId) {
@@ -11,7 +11,7 @@ public class QuadrangleCurrentIdSpecification implements Specification {
     }
 
     @Override
-    public boolean test(Quadrangle quadrangle) {
+    public boolean specify(Quadrangle quadrangle) {
         return quadrangle.getQuadrangleId() == currentId;
     }
 }

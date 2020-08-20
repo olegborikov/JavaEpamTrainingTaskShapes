@@ -30,7 +30,7 @@ public class QuadrangleDataObserver implements QuadrangleObserver {
             Warehouse warehouse = Warehouse.getInstance();
             warehouse.put(quadrangle.getQuadrangleId(), quadrangleDataKeeper);
         } catch (IncorrectDataException e) {
-            LOGGER.log(Level.ERROR, "Quadrangle wasn't add to warehouse: {}", quadrangle, e);
+            LOGGER.log(Level.WARN, "Quadrangle wasn't add to warehouse: {}", quadrangle, e);
         }
     }
 }

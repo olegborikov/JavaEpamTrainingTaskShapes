@@ -23,7 +23,7 @@ public class CustomFileReader {
                     "There were read {} lines from file", linedTextList.size());
             return linedTextList;
         } catch (IOException e) {
-            LOGGER.log(Level.INFO, "File is not exists", e);
+            LOGGER.log(Level.ERROR, "File is not exists", e);
             throw new RuntimeException("File is not exists", e);
         }
     }

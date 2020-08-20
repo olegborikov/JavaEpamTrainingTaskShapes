@@ -1,9 +1,9 @@
 package com.borikov.task1.repository;
 
-import com.borikov.task1.creator.QuadrangleCreator;
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.Specification;
+import com.borikov.task1.specification.QuadrangleSpecification;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 
 public class QuadrangleRepository {
     private static QuadrangleRepository instance;
-    private static List<Quadrangle> quadrangles;
-    private static final String FILE_NAME = "input/data.txt";
+    private static List<Quadrangle> quadrangles = new ArrayList<>();
 
     private QuadrangleRepository() {
     }
@@ -20,14 +19,12 @@ public class QuadrangleRepository {
     public static QuadrangleRepository getInstance() {
         if (instance == null) {
             instance = new QuadrangleRepository();
-            QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
-            quadrangles = quadrangleCreator.createQuadranglesFromFile(FILE_NAME);// TODO: 13.08.2020 can i fill like that? 
         }
         return instance;
     }
 
-    public List<Quadrangle> query(Specification specification) {
-        return quadrangles.stream().filter(q -> specification.test(q))
+    public List<Quadrangle> query(QuadrangleSpecification specification) {
+        return quadrangles.stream().filter(q -> specification.specify(q))
                 .collect(Collectors.toList());
     }
 

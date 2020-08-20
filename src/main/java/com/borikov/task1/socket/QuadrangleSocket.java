@@ -28,7 +28,7 @@ public class QuadrangleSocket {
                     List<Quadrangle> quadrangles =
                             quadrangleCreator.createQuadranglesFromFile(FILE_NAME);
                     String answer = quadrangles.stream()
-                            .map(Quadrangle::toString)
+                            .map(q -> q.toString())
                             .collect(Collectors.joining("<br>"));
                     output.println("HTTP/1.1 200 OK");
                     output.println("Content-Type: text/html; charset=utf-8");
