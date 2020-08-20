@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class QuadrangleInsideFirstQuadrantSpecificationTest {
-    QuadrangleSpecification specification;
+    private QuadrangleSpecification specification;
 
     @BeforeClass
     public void setUp() {

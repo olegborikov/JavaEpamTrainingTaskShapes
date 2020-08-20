@@ -12,7 +12,7 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class QuadrangleRangePerimeterSpecificationTest {
-    QuadrangleSpecification specification;
+    private QuadrangleSpecification specification;
 
     @BeforeClass
     public void setUp() {
