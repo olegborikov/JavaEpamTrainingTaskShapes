@@ -4,7 +4,7 @@ import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
 import com.borikov.task1.entity.QuadrangleDataHandler;
 import com.borikov.task1.observer.QuadrangleEvent;
-import com.borikov.task1.warehouse.Warehouse;
+import com.borikov.task1.warehouse.QuadrangleWarehouse;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -14,18 +14,18 @@ import static org.testng.Assert.*;
 
 public class QuadrangleDataObserverTest {
     private QuadrangleDataObserver quadrangleDataObserver;
-    private Warehouse warehouse;
+    private QuadrangleWarehouse quadrangleWarehouse;
 
     @BeforeClass
     public void setUp() {
         quadrangleDataObserver = new QuadrangleDataObserver();
-        warehouse = Warehouse.getInstance();
+        quadrangleWarehouse = QuadrangleWarehouse.getInstance();
     }
 
     @AfterClass
     public void tearDown() {
         quadrangleDataObserver = null;
-        warehouse = null;
+        quadrangleWarehouse = null;
     }
 
     @DataProvider(name = "actionPerformedPositiveData")
@@ -56,7 +56,7 @@ public class QuadrangleDataObserverTest {
     public void actionPerformedPositiveTest(QuadrangleEvent quadrangleEvent) {
         quadrangleDataObserver.actionPerformed(quadrangleEvent);
         QuadrangleDataHandler quadrangleDataHandler =
-                warehouse.get(quadrangleEvent.getSource().getQuadrangleId());
+                quadrangleWarehouse.get(quadrangleEvent.getSource().getQuadrangleId());
         assertNotNull(quadrangleDataHandler);
     }
 
@@ -80,7 +80,7 @@ public class QuadrangleDataObserverTest {
     public void actionPerformedNegativeTest(QuadrangleEvent quadrangleEvent) {
         quadrangleDataObserver.actionPerformed(quadrangleEvent);
         QuadrangleDataHandler quadrangleDataHandler =
-                warehouse.get(quadrangleEvent.getSource().getQuadrangleId());
+                quadrangleWarehouse.get(quadrangleEvent.getSource().getQuadrangleId());
         assertNull(quadrangleDataHandler);
     }
 }

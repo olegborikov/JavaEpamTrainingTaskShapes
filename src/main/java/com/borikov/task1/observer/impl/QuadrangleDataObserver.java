@@ -7,7 +7,7 @@ import com.borikov.task1.observer.QuadrangleEvent;
 import com.borikov.task1.observer.QuadrangleObserver;
 import com.borikov.task1.service.QuadrangleArithmeticService;
 import com.borikov.task1.service.impl.QuadrangleArithmeticServiceImpl;
-import com.borikov.task1.warehouse.Warehouse;
+import com.borikov.task1.warehouse.QuadrangleWarehouse;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,8 +27,8 @@ public class QuadrangleDataObserver implements QuadrangleObserver {
                     quadrangleArithmeticService.calculateSquare(quadrangle);
             QuadrangleDataHandler quadrangleDataKeeper =
                     new QuadrangleDataHandler(quadranglePerimeter, quadrangleSquare);
-            Warehouse warehouse = Warehouse.getInstance();
-            warehouse.put(quadrangle.getQuadrangleId(), quadrangleDataKeeper);
+            QuadrangleWarehouse quadrangleWarehouse = QuadrangleWarehouse.getInstance();
+            quadrangleWarehouse.put(quadrangle.getQuadrangleId(), quadrangleDataKeeper);
         } catch (IncorrectDataException e) {
             LOGGER.log(Level.WARN, "Quadrangle wasn't add to warehouse: {}", quadrangle, e);
         }

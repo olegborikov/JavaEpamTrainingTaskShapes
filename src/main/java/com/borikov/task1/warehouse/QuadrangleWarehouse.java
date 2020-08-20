@@ -6,16 +6,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Warehouse {
-    private static Warehouse instance;
+public class QuadrangleWarehouse {
+    private static QuadrangleWarehouse instance;
     private static Map<Long, QuadrangleDataHandler> quadrangleData = new HashMap<>();
 
-    private Warehouse() {
+    private QuadrangleWarehouse() {
     }
 
-    public static Warehouse getInstance() {
+    public static QuadrangleWarehouse getInstance() {
         if (instance == null) {
-            instance = new Warehouse();
+            instance = new QuadrangleWarehouse();
         }
         return instance;
     }

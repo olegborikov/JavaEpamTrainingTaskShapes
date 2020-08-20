@@ -80,13 +80,13 @@ public class QuadrangleRepositoryTest {
         };
     }
 
-    @Test(dataProvider = "addData", priority = 1)
+    @Test(dataProvider = "addData")
     public void addTest(Quadrangle quadrangle) {
         boolean actual = quadrangleRepository.add(quadrangle);
         assertTrue(actual);
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = {"addTest"})
     public void getAllTest() {
         List<Quadrangle> expected = new ArrayList<>();
         expected.add(quadrangle1);
@@ -98,7 +98,7 @@ public class QuadrangleRepositoryTest {
         assertEquals(actual, expected);
     }
 
-    @Test(priority = 3)
+    @Test(dependsOnMethods = {"getAllTest"})
     public void removeTest() {
         quadrangleRepository.remove(quadrangle5);
         List<Quadrangle> expected = new ArrayList<>();
@@ -138,7 +138,7 @@ public class QuadrangleRepositoryTest {
         };
     }
 
-    @Test(dataProvider = "queryPositiveData", priority = 4)
+    @Test(dataProvider = "queryPositiveData", dependsOnMethods = {"removeTest"})
     public void queryPositiveTest
             (QuadrangleSpecification specification, List<Quadrangle> expected) {
         List<Quadrangle> actual = quadrangleRepository.query(specification);
@@ -173,7 +173,7 @@ public class QuadrangleRepositoryTest {
         };
     }
 
-    @Test(dataProvider = "queryNegativeData", priority = 4)
+    @Test(dataProvider = "queryNegativeData", dependsOnMethods = {"queryPositiveTest"})
     public void queryNegativeTest(
             QuadrangleSpecification specification, List<Quadrangle> expected) {
         List<Quadrangle> actual = quadrangleRepository.query(specification);
@@ -207,7 +207,7 @@ public class QuadrangleRepositoryTest {
         };
     }
 
-    @Test(dataProvider = "sortPositiveData", priority = 5)
+    @Test(dataProvider = "sortPositiveData", dependsOnMethods = {"queryNegativeTest"})
     public void sortPositiveTest(
             Comparator<Quadrangle> comparator, List<Quadrangle> expected) {
         List<Quadrangle> actual = quadrangleRepository.sort(comparator);
@@ -240,10 +240,11 @@ public class QuadrangleRepositoryTest {
         };
     }
 
-    @Test(dataProvider = "sortNegativeData", priority = 5)
+    @Test(dataProvider = "sortNegativeData", dependsOnMethods = {"sortPositiveTest"})
     public void sortNegativeTest(
             Comparator<Quadrangle> comparator, List<Quadrangle> expected) {
         List<Quadrangle> actual = quadrangleRepository.sort(comparator);
         assertNotEquals(actual, expected);
     }
 }
+
