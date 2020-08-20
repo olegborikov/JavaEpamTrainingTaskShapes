@@ -5,8 +5,6 @@ import com.borikov.task1.entity.Quadrangle;
 import com.borikov.task1.specification.QuadrangleSpecification;
 
 public class QuadrangleInsideFourthQuadrantSpecification implements QuadrangleSpecification {
-    private static final double MIN_COORDINATE = 0;
-
     @Override
     public boolean specify(Quadrangle quadrangle) {
         Point point1 = quadrangle.getPoint1();
