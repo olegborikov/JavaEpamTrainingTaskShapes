@@ -2,10 +2,10 @@ package com.borikov.task1.observer;
 
 import java.util.EventObject;
 
-public interface Observable<T extends Observer<? extends EventObject>> {
-    void attach(T t);
+public interface Observable<T extends EventObject> {
+    void attach(Observer<T> observer);
 
-    void detach(T t);
+    void detach(Observer<T> observer);
 
     void notifyObservers();
 }

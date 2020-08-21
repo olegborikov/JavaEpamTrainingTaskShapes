@@ -5,7 +5,7 @@ import com.borikov.task1.comparator.QuadranglePoint1XComparator;
 import com.borikov.task1.comparator.QuadranglePoint4YComparator;
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.QuadrangleSpecification;
+import com.borikov.task1.specification.Specification;
 import com.borikov.task1.specification.impl.QuadrangleCurrentIdSpecification;
 import com.borikov.task1.specification.impl.QuadrangleInsideFirstQuadrantSpecification;
 import com.borikov.task1.specification.impl.QuadrangleInsideFourthQuadrantSpecification;
@@ -112,21 +112,21 @@ public class QuadrangleRepositoryTest {
 
     @DataProvider(name = "queryPositiveData")
     public Object[][] createQueryPositiveData() {
-        QuadrangleSpecification specification1 =
+        Specification<Quadrangle> specification1 =
                 new QuadrangleCurrentIdSpecification(quadrangle1.getQuadrangleId());
         List<Quadrangle> expected1 = new ArrayList<>();
         expected1.add(quadrangle1);
-        QuadrangleSpecification specification2 =
+        Specification<Quadrangle> specification2 =
                 new QuadrangleInsideFirstQuadrantSpecification();
         List<Quadrangle> expected2 = new ArrayList<>();
         expected2.add(quadrangle1);
         expected2.add(quadrangle2);
         expected2.add(quadrangle3);
         expected2.add(quadrangle4);
-        QuadrangleSpecification specification3 =
+        Specification<Quadrangle> specification3 =
                 new QuadrangleInsideFourthQuadrantSpecification();
         List<Quadrangle> expected3 = new ArrayList<>();
-        QuadrangleSpecification specification4 =
+        Specification<Quadrangle> specification4 =
                 new QuadrangleRangePerimeterSpecification(0, 6);
         List<Quadrangle> expected4 = new ArrayList<>();
         expected4.add(quadrangle4);
@@ -140,28 +140,28 @@ public class QuadrangleRepositoryTest {
 
     @Test(dataProvider = "queryPositiveData", dependsOnMethods = {"removeTest"})
     public void queryPositiveTest
-            (QuadrangleSpecification specification, List<Quadrangle> expected) {
+            (Specification<Quadrangle> specification, List<Quadrangle> expected) {
         List<Quadrangle> actual = quadrangleRepository.query(specification);
         assertEquals(actual, expected);
     }
 
     @DataProvider(name = "queryNegativeData")
     public Object[][] createQueryNegativeData() {
-        QuadrangleSpecification specification1 =
+        Specification<Quadrangle> specification1 =
                 new QuadrangleCurrentIdSpecification(quadrangle1.getQuadrangleId());
         List<Quadrangle> expected1 = new ArrayList<>();
         expected1.add(quadrangle1);
         expected1.add(quadrangle1);
-        QuadrangleSpecification specification2 =
+        Specification<Quadrangle> specification2 =
                 new QuadrangleInsideFirstQuadrantSpecification();
         List<Quadrangle> expected2 = new ArrayList<>();
         expected2.add(quadrangle1);
         expected2.add(quadrangle2);
         expected2.add(quadrangle3);
-        QuadrangleSpecification specification3 =
+        Specification<Quadrangle> specification3 =
                 new QuadrangleInsideFourthQuadrantSpecification();
         List<Quadrangle> expected3 = null;
-        QuadrangleSpecification specification4 =
+        Specification<Quadrangle> specification4 =
                 new QuadrangleRangePerimeterSpecification(0, 6);
         List<Quadrangle> expected4 = new ArrayList<>();
         expected4.add(quadrangle3);
@@ -175,7 +175,7 @@ public class QuadrangleRepositoryTest {
 
     @Test(dataProvider = "queryNegativeData", dependsOnMethods = {"queryPositiveTest"})
     public void queryNegativeTest(
-            QuadrangleSpecification specification, List<Quadrangle> expected) {
+            Specification<Quadrangle> specification, List<Quadrangle> expected) {
         List<Quadrangle> actual = quadrangleRepository.query(specification);
         assertNotEquals(actual, expected);
     }

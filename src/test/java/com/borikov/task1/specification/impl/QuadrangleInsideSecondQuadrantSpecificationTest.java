@@ -2,7 +2,7 @@ package com.borikov.task1.specification.impl;
 
 import com.borikov.task1.entity.Point;
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.QuadrangleSpecification;
+import com.borikov.task1.specification.Specification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class QuadrangleInsideSecondQuadrantSpecificationTest {
-    private QuadrangleSpecification specification;
+    private Specification<Quadrangle> specification;
 
     @BeforeClass
     public void setUp() {

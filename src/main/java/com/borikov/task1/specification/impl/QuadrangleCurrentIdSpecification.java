@@ -1,9 +1,9 @@
 package com.borikov.task1.specification.impl;
 
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.QuadrangleSpecification;
+import com.borikov.task1.specification.Specification;
 
-public class QuadrangleCurrentIdSpecification implements QuadrangleSpecification {
+public class QuadrangleCurrentIdSpecification implements Specification<Quadrangle> {
     private final long currentId;
 
     public QuadrangleCurrentIdSpecification(long currentId) {

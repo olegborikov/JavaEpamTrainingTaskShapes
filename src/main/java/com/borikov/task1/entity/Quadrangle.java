@@ -1,20 +1,20 @@
 package com.borikov.task1.entity;
 
+import com.borikov.task1.observer.Observable;
+import com.borikov.task1.observer.Observer;
 import com.borikov.task1.observer.QuadrangleEvent;
-import com.borikov.task1.observer.QuadrangleObservable;
-import com.borikov.task1.observer.QuadrangleObserver;
 import com.borikov.task1.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Quadrangle implements QuadrangleObservable {
+public class Quadrangle implements Observable<QuadrangleEvent> {
     private final long quadrangleId;
     private Point point1;
     private Point point2;
     private Point point3;
     private Point point4;
-    private List<QuadrangleObserver> observers = new ArrayList<>();
+    private List<Observer<QuadrangleEvent>> observers = new ArrayList<>();
 
     public Quadrangle(Point point1, Point point2, Point point3, Point point4) {
         quadrangleId = IdGenerator.generateId();
@@ -184,18 +184,18 @@ public class Quadrangle implements QuadrangleObservable {
     }
 
     @Override
-    public void attach(QuadrangleObserver quadrangleObserver) {
-        observers.add(quadrangleObserver);
+    public void attach(Observer<QuadrangleEvent> observer) {
+        observers.add(observer);
     }
 
     @Override
-    public void detach(QuadrangleObserver quadrangleObserver) {
-        observers.remove(quadrangleObserver);
+    public void detach(Observer<QuadrangleEvent> observer) {
+        observers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        for (QuadrangleObserver observer : observers) {
+        for (Observer<QuadrangleEvent> observer : observers) {
             observer.actionPerformed(new QuadrangleEvent(this));
         }
     }

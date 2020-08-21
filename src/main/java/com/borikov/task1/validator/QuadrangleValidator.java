@@ -18,10 +18,7 @@ public class QuadrangleValidator {
     public boolean isQuadrangleCorrect(Quadrangle quadrangle) {
         boolean result = false;
         PointValidator pointValidator = new PointValidator();
-        if (quadrangle != null && quadrangle.getPoint1() != null
-                && quadrangle.getPoint2() != null
-                && quadrangle.getPoint3() != null
-                && quadrangle.getPoint4() != null) {
+        if (quadrangle != null) {
             result = pointValidator.isPointInLimit(quadrangle.getPoint1())
                     && pointValidator.isPointInLimit(quadrangle.getPoint2())
                     && pointValidator.isPointInLimit(quadrangle.getPoint3())

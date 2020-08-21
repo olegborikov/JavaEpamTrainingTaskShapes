@@ -1,7 +1,7 @@
 package com.borikov.task1.repository;
 
 import com.borikov.task1.entity.Quadrangle;
-import com.borikov.task1.specification.QuadrangleSpecification;
+import com.borikov.task1.specification.Specification;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +23,7 @@ public class QuadrangleRepository {
         return instance;
     }
 
-    public List<Quadrangle> query(QuadrangleSpecification specification) {
+    public List<Quadrangle> query(Specification<Quadrangle> specification) {
         return quadrangles.stream().filter(q -> specification.specify(q))
                 .collect(Collectors.toList());
     }
