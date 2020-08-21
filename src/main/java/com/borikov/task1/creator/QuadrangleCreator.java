@@ -15,24 +15,22 @@ import java.util.List;
 public class QuadrangleCreator {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public List<Quadrangle> createQuadranglesFromFile(String fileName) {// TODO: 13.08.2020 refactor?
+    public List<Quadrangle> createQuadranglesFromFile(String fileName) {// TODO: 13.08.2020 refactor
         List<Quadrangle> quadrangles = new ArrayList<>();
-        if (fileName != null) {
-            CustomFileReader textFileReader = new CustomFileReader();
-            DataParser quadrangleParser = new DataParser();
-            QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
-            List<String> linedText = textFileReader.readText(fileName);
-            linedText.removeIf(line -> !quadrangleValidator.isLineConformQuadrangle(line));
-            LOGGER.log(Level.INFO, "{} lines are correct", linedText.size());
-            for (String line : linedText) {
-                List<Double> numbers = quadrangleParser.parseLineToNumberList(line);
-                Quadrangle quadrangle = createQuadrangle(numbers);
-                if (quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
-                    quadrangles.add(quadrangle);
-                }
+        CustomFileReader textFileReader = new CustomFileReader();
+        DataParser quadrangleParser = new DataParser();
+        QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+        List<String> linedText = textFileReader.readText(fileName);
+        linedText.removeIf(line -> !quadrangleValidator.isLineConformQuadrangle(line));
+        LOGGER.log(Level.INFO, "{} lines are correct", linedText.size());
+        for (String line : linedText) {
+            List<Double> numbers = quadrangleParser.parseLineToNumberList(line);
+            Quadrangle quadrangle = createQuadrangle(numbers);
+            if (quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
+                quadrangles.add(quadrangle);
             }
-            LOGGER.log(Level.INFO, "{} quadrangles are valid", quadrangles.size());
         }
+        LOGGER.log(Level.INFO, "{} quadrangles are valid", quadrangles.size());
         return quadrangles;
     }
 

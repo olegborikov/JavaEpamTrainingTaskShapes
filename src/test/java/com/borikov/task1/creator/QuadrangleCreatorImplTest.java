@@ -41,8 +41,7 @@ public class QuadrangleCreatorImplTest {
         expected.add(createQuadrangle(0, 3.1, 1.2, 0, 0, -3.1, -1.2, 0));
         expected.add(createQuadrangle(-1.0, -1, -1, -3, -3., -3, -3.0, -1));
         return new Object[][]{
-                {fileName, expected},
-                {null, new ArrayList<>()}
+                {fileName, expected}
         };
     }
 
