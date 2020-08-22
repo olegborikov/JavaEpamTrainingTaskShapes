@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Index</title>
+    <title>Quadrangle menu</title>
 </head>
 <body>
-<h3>What time is this?</h3>
-<form action="controller" method="get">
-    <input type="submit" value="get time"/>
+<form action="controller" method="post">
+    <input type="submit" value="show all quadrangles"/>
 </form>
 </body>
 </html>
