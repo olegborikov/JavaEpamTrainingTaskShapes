@@ -11,11 +11,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class QuadrangleDisplayCommand implements Command {
+    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Oleshka\\Desktop" +
+            "\\JavaEpamTrainingTaskShapes\\src\\main\\webapp\\uploads";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
         List<Quadrangle> quadrangles = quadrangleCreator.createQuadranglesFromFile("C:\\Users\\Oleshka\\Desktop\\JavaEpamTrainingTaskShapes\\input\\data.txt");
         request.setAttribute("quadrangles", quadrangles);
-        request.getRequestDispatcher("/jsp/quadrangleDisplay.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/quadrangle_display.jsp").forward(request, response);
     }
 }
