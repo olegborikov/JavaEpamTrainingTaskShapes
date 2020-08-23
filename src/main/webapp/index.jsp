@@ -10,9 +10,9 @@ Uploads
     Upload File: <INPUT type="file" name="content" height="130">
     <INPUT type="submit" value="Upload File">
 </form>
-
+<hr/>
 <form action="controller" method="get">
-    <input type="hidden" name="commandType" value="quadrangle_display_command">
+    <input type="hidden" name="commandType" value="EXISTING_FILE_DISPLAY_COMMAND">
     <input type="submit" value="show all quadrangles"/>
 </form>
 </body>
