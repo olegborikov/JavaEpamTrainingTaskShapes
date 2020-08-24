@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ExistingFileDisplayCommand implements Command {
+public class ExistingFilesDisplayCommand implements Command {
     private static final String UPLOAD_DIRECTORY = "C:\\Users\\Oleshka\\Desktop" +
             "\\JavaEpamTrainingTaskShapes\\src\\main\\webapp\\uploads";
 

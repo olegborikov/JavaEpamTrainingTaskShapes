@@ -5,9 +5,9 @@
     <title>File choose</title>
 </head>
 <body>
-<form action="controller" method="get">
+<form action="controller" method="post">
     <input type="hidden" name="commandType" value="quadrangle_display_command">
-    <p><select size="4" multiple name="fileName">
+    <p><select size="4" name="fileName">
         <option disabled>Choose file</option>
         <c:forEach var="f" items="${existingFiles}">
             <option> ${f}</option>
