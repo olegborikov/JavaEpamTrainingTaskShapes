@@ -5,7 +5,7 @@
     <title>File choose</title>
 </head>
 <body>
-<form action="controller" method="post">
+<form action="/quadrangle/show" method="post">
     <input type="hidden" name="commandType" value="quadrangle_display_command">
     <p><select size="4" name="fileName">
         <option disabled>Choose file</option>

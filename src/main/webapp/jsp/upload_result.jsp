@@ -6,7 +6,7 @@
 <body>
 ${upload_result}
 <hr/>
-<form action="controller" method="post">
+<form action="/quadrangle/files" method="post">
     <input type="hidden" name="commandType" value="existing_files_display_command">
     <input type="submit" value="show quadrangles"/>
 </form>
