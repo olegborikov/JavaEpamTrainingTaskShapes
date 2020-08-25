@@ -36,11 +36,11 @@
             <td>(${q.point2.x},${q.point2.y})</td>
             <td>(${q.point3.x},${q.point3.y})</td>
             <td>(${q.point4.x},${q.point4.y})</td>
-          <%--  <td>
-                <form action="controller" method="get">
-                    <input type="submit" value="check"/>
-                </form>
-            </td>--%>
+                <%--  <td>
+                      <form action="controller" method="get">
+                          <input type="submit" value="check"/>
+                      </form>
+                  </td>--%>
             <td>
                 <button>Check</button>
             </td>

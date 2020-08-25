@@ -10,7 +10,7 @@
     <p><select size="4" name="fileName">
         <option disabled>Choose file</option>
         <c:forEach var="f" items="${existingFiles}">
-            <option> ${f}</option>
+            <option>${f}</option>
         </c:forEach>
     </select></p>
     <p><input type="submit" value="Choose"></p>

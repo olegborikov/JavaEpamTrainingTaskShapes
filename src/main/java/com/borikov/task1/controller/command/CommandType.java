@@ -1,11 +1,13 @@
 package com.borikov.task1.controller.command;
 
+import com.borikov.task1.controller.command.impl.DefaultCommand;
 import com.borikov.task1.controller.command.impl.ExistingFilesDisplayCommand;
 import com.borikov.task1.controller.command.impl.QuadrangleDisplayCommand;
 
 public enum CommandType {
     QUADRANGLE_DISPLAY_COMMAND(new QuadrangleDisplayCommand()),
-    EXISTING_FILES_DISPLAY_COMMAND(new ExistingFilesDisplayCommand());
+    EXISTING_FILES_DISPLAY_COMMAND(new ExistingFilesDisplayCommand()),
+    DEFAULT_COMMAND(new DefaultCommand());
     private final Command command;
 
     CommandType(Command command) {

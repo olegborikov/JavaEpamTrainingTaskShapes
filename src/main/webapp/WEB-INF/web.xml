@@ -8,14 +8,4 @@
         <error-code>404</error-code>
         <location>/jsp/error-404.jsp</location>
     </error-page>
-
-    <servlet>
-        <servlet-name>qua</servlet-name>
-        <jsp-file>/jsp/quadrangle_display.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>qua</servlet-name>
-        <url-pattern>/qua</url-pattern>
-    </servlet-mapping>
 </web-app>
