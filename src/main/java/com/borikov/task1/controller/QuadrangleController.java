@@ -3,6 +3,7 @@ package com.borikov.task1.controller;
 import com.borikov.task1.controller.command.Command;
 import com.borikov.task1.controller.command.CommandProvider;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +16,21 @@ public class QuadrangleController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CommandProvider commandProvider = new CommandProvider();
-        Command command = commandProvider.defineCommand(request.getParameter("commandType"));
-        command.execute(request, response);
+        processRequest(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String commandName = request.getParameter(RequestParameter.COMMAND_NAME);
+        Command command = CommandProvider.defineCommand(commandName);
+        String page = command.execute(request);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        dispatcher.forward(request, response);
     }
 }

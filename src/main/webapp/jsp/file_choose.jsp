@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="/quadrangle/show" method="post">
-    <input type="hidden" name="commandType" value="quadrangle_display_command">
+    <input type="hidden" name="commandName" value="quadrangle_display_command">
     <p><select size="4" name="fileName">
         <option disabled>Choose file</option>
         <c:forEach var="f" items="${existingFiles}">

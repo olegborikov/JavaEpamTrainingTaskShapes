@@ -8,7 +8,7 @@ public class CommandProvider {
     private static final CommandType DEFAULT_TYPE = CommandType.DEFAULT_COMMAND;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public Command defineCommand(String request) {
+    public static Command defineCommand(String request) {
         CommandType currentType = DEFAULT_TYPE;
         if (request != null) {
             try {
@@ -19,5 +19,8 @@ public class CommandProvider {
         }
         Command currentCommand = currentType.getCommand();
         return currentCommand;
+    }
+
+    private CommandProvider() {
     }
 }
