@@ -10,6 +10,7 @@
     <hr/>
     Uploads
     <form action="/upload" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="commandName" value="upload_txt_file_command">
         Upload File: <input type="file" name="content" accept="text/plain">
         <input type="submit" value="Upload File">
     </form>

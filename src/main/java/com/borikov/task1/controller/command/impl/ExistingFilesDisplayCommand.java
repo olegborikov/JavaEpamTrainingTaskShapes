@@ -3,6 +3,9 @@ package com.borikov.task1.controller.command.impl;
 import com.borikov.task1.controller.PagePath;
 import com.borikov.task1.controller.RequestParameter;
 import com.borikov.task1.controller.command.Command;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class ExistingFilesDisplayCommand implements Command {
     private static final String UPLOAD_DIRECTORY = "E:\\uploads";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -26,7 +30,7 @@ public class ExistingFilesDisplayCommand implements Command {
             request.setAttribute(RequestParameter.EXISTING_FILES, existingFiles);
             page = PagePath.FILE_CHOOSE;
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.ERROR, "Error while working with file", e);
             page = PagePath.ERROR;
         }
         return page;
