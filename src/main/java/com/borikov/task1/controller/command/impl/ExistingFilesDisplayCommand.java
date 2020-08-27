@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ExistingFilesDisplayCommand implements Command {
-    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Oleshka\\Desktop" +
-            "\\JavaEpamTrainingTaskShapes\\src\\main\\webapp\\uploads";
+    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
 
     @Override
     public String execute(HttpServletRequest request) {

@@ -3,18 +3,25 @@
 <html>
 <head>
     <title>File choose</title>
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css">
+    <script type="text/javascript" src="js\bootstrap.min.js"></script>
 </head>
 <body>
-<form action="/quadrangle/show" method="post">
-    <input type="hidden" name="commandName" value="quadrangle_display_command">
-    <p><select size="4" name="fileName">
-        <option disabled>Choose file</option>
-        <c:forEach var="f" items="${existingFiles}">
-            <option>${f}</option>
-        </c:forEach>
-    </select></p>
-    <p><input type="submit" value="Choose"></p>
-</form>
-</form>
+<div class="container">
+    <hr/>
+    <form action="quadrangle" method="post">
+        <input type="hidden" name="commandName" value="quadrangle_display_command">
+        <p><select size="4" name="fileName">
+            <option disabled>Choose file</option>
+            <c:forEach var="f" items="${existingFiles}">
+                <option>${f}</option>
+            </c:forEach>
+        </select></p>
+        <input type="submit" value="Choose">
+    </form>
+    <hr/>
+    <button onclick="history.back()">Previous Page</button>
+    <hr/>
+</div>
 </body>
 </html>

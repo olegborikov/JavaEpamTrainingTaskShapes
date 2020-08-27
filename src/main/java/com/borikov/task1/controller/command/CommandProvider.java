@@ -4,20 +4,24 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Optional;
+
 public class CommandProvider {
-    private static final CommandType DEFAULT_TYPE = CommandType.DEFAULT_COMMAND;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static Command defineCommand(String request) {
-        CommandType currentType = DEFAULT_TYPE;
-        if (request != null) {
+    public static Optional<Command> defineCommand(String commandName) {
+        Optional<Command> currentCommand;
+        if (commandName != null && !commandName.isBlank()) {
             try {
-                currentType = CommandType.valueOf(request.toUpperCase());
+                CommandType currentType = CommandType.valueOf(commandName.toUpperCase());
+                currentCommand = Optional.of(currentType.getCommand());
             } catch (IllegalArgumentException e) {
-                LOGGER.log(Level.ERROR, "Incorrect command type: {}", request, e);
+                LOGGER.log(Level.ERROR, "Incorrect command type: {}", commandName, e);
+                currentCommand = Optional.empty();
             }
+        } else {
+            currentCommand = Optional.empty();
         }
-        Command currentCommand = currentType.getCommand();
         return currentCommand;
     }
 

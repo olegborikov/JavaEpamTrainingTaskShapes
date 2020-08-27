@@ -21,8 +21,7 @@ import java.nio.file.Paths;
         maxFileSize = 1024 * 1024 * 5,
         maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UploadController extends HttpServlet {
-    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Oleshka\\Desktop" +
-            "\\JavaEpamTrainingTaskShapes\\src\\main\\webapp\\uploads";
+    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
@@ -38,7 +37,7 @@ public class UploadController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException { // TODO: 26.08.2020 в сервис или оставить так
         Path path = Paths.get(UPLOAD_DIRECTORY);
         if (!Files.exists(path)) {
             Files.createDirectories(path);

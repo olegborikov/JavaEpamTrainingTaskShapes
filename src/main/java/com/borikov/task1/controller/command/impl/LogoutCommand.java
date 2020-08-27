@@ -5,9 +5,9 @@ import com.borikov.task1.controller.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class DefaultCommand implements Command {
+public class LogoutCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        return PagePath.INDEX;
+        return PagePath.LOGIN;
     }
 }

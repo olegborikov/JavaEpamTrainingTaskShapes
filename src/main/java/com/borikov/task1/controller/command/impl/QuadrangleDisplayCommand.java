@@ -11,8 +11,7 @@ import java.io.File;
 import java.util.List;
 
 public class QuadrangleDisplayCommand implements Command {
-    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Oleshka\\Desktop" +
-            "\\JavaEpamTrainingTaskShapes\\src\\main\\webapp\\uploads";
+    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -20,6 +19,7 @@ public class QuadrangleDisplayCommand implements Command {
         QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
         List<Quadrangle> quadrangles = quadrangleCreator.createQuadranglesFromFile(
                 UPLOAD_DIRECTORY + File.separator + fileName);
+        request.setAttribute(RequestParameter.FILE_NAME, fileName);
         request.setAttribute(RequestParameter.QUADRANGLES, quadrangles);
         return PagePath.QUADRANGLE_DISPLAY;
     }

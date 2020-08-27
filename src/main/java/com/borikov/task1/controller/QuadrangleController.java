@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
-@WebServlet(urlPatterns = "/quadrangle/*")
+@WebServlet(urlPatterns = "/quadrangle")
 public class QuadrangleController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -28,7 +29,8 @@ public class QuadrangleController extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String commandName = request.getParameter(RequestParameter.COMMAND_NAME);
-        Command command = CommandProvider.defineCommand(commandName);
+        Optional<Command> commandOptional = CommandProvider.defineCommand(commandName);
+        Command command = commandOptional.orElseThrow(IllegalArgumentException::new);
         String page = command.execute(request);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);
