@@ -7,7 +7,8 @@ public enum CommandType {
     EXISTING_FILES_DISPLAY_COMMAND(new ExistingFilesDisplayCommand()),
     LOGIN_COMMAND(new LoginCommand()),
     LOGOUT_COMMAND(new LogoutCommand()),
-    UPLOAD_TXT_FILE_COMMAND(new UploadTxtFileCommand());
+    UPLOAD_TXT_FILE_COMMAND(new UploadTxtFileCommand()),
+    ADD_QUADRANGLES_WAREHOUSE_COMMAND(new AddQuadranglesWarehouseCommand());
 
     private final Command command;
 

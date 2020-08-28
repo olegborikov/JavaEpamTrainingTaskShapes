@@ -11,7 +11,7 @@
     <hr/>
     <form action="quadrangle" method="post">
         <input type="hidden" name="commandName" value="quadrangle_display_command">
-        <p><select size="4" name="fileName">
+        <p><select size="4" name="fileName" required>
             <option disabled>Choose file</option>
             <c:forEach var="f" items="${existingFiles}">
                 <option>${f}</option>

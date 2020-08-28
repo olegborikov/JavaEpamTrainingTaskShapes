@@ -26,59 +26,6 @@ public class QuadrangleCreatorImplTest {
         quadrangleCreator = null;
     }
 
-    @DataProvider(name = "createQuadranglesFromFilePositiveData")
-    public Object[][] createCreateQuadranglesFromFilePositiveData() {
-        String fileName = "input/data.txt";
-        List<Quadrangle> expected = new ArrayList<>();
-        expected.add(createQuadrangle(2, 0.0, .0, 3, 2.0, 6., 4, 3.0));
-        expected.add(createQuadrangle(-1.5, -1.5, 0, 2.0, 0, .0, 1, 0));
-        expected.add(createQuadrangle(-2.5, -2.5, -2.5, 2.5, 2.5, 2.5, 2.5, -2.5));
-        expected.add(createQuadrangle(3, 0.0, -2, .0, -1, 2, 2.0, 2.));
-        expected.add(createQuadrangle(-3.25, -3, 1.2, 4.4, 7.1, 1, 6, -4.6));
-        expected.add(createQuadrangle(0., 0, 3, 0, 6., 0.0, 3, 3));
-        expected.add(createQuadrangle(0, 0, 2, 3, 6, 3, 4, 0.0));
-        expected.add(createQuadrangle(6.0, .0, 3., 3, -2, -2.0, -2, 3));
-        expected.add(createQuadrangle(0, 3.1, 1.2, 0, 0, -3.1, -1.2, 0));
-        expected.add(createQuadrangle(-1.0, -1, -1, -3, -3., -3, -3.0, -1));
-        return new Object[][]{
-                {fileName, expected}
-        };
-    }
-
-    @Test(dataProvider = "createQuadranglesFromFilePositiveData")
-    public void createQuadranglesFromFilePositiveTest(
-            String fileName, List<Quadrangle> expected) {
-        List<Quadrangle> actual = quadrangleCreator.createQuadranglesFromFile(fileName);
-        boolean result = equalsQuadrangleList(actual, expected);
-        assertTrue(result);
-    }
-
-    @Test
-    public void createQuadranglesFromFileNegativeTest() {
-        String fileName = "input/data.txt";
-        List<Quadrangle> expected = new ArrayList<>();
-        expected.add(createQuadrangle(2, 0.0, .0, 3, 2.0, 6., 4, 3.0));
-        expected.add(createQuadrangle(-1.5, -1.5, 0, 2.0, 0, .0, 1, 0));
-        expected.add(createQuadrangle(-2.5, -2.5, -2.5, 2.5, 2.5, 2.5, 2.5, -2.5));
-        expected.add(createQuadrangle(3, 0.0, -2, .0, -1, 2, 2.0, 2.));
-        expected.add(createQuadrangle(-3.25, -3, 1.2, 4.4, 7.1, 1, 6, -4.6));
-        expected.add(createQuadrangle(0., 0, 3, 0, 6., 0.0, 3, 3));
-        expected.add(createQuadrangle(0, 0, 2, 3, 6, 3, 4, 0.0));
-        expected.add(createQuadrangle(6.0, .0, 3., 3, -2, -2.0, -2, 3));
-        expected.add(createQuadrangle(0, 3.1, 1.2, 0, 0, -3.1, -1.2, 0));
-        expected.add(createQuadrangle(-1.0, -1, -1, -3, -3., -3, -3.0, -1));
-        expected.add(createQuadrangle(-1.0, -1, -1, -3, -3., -3, -3.0, -1));
-        List<Quadrangle> actual = quadrangleCreator.createQuadranglesFromFile(fileName);
-        boolean result = equalsQuadrangleList(actual, expected);
-        assertFalse(result);
-    }
-
-    @Test(expectedExceptions = RuntimeException.class)
-    public void createQuadranglesFromFileExceptionTest() {
-        String filename = "data.txt";
-        quadrangleCreator.createQuadranglesFromFile(filename);
-    }
-
     @DataProvider(name = "createQuadranglePositiveData")
     public Object[][] createCreateQuadranglePositiveData() {
         List<Double> numbers1 = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0);
