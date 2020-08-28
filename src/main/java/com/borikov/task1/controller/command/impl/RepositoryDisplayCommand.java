@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class RepositoryDisplayCommand implements Command {
+    private final QuadrangleRepository quadrangleRepository = QuadrangleRepository.getInstance();
+
     @Override
-    public String execute(HttpServletRequest request){
-        QuadrangleRepository quadrangleRepository = QuadrangleRepository.getInstance();
+    public String execute(HttpServletRequest request) {
         List<Quadrangle> quadrangles = quadrangleRepository.getAll();
         request.setAttribute(RequestParameter.QUADRANGLES, quadrangles);
         return PagePath.REPOSITORY_DISPLAY;

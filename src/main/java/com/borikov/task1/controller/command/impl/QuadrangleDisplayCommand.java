@@ -19,23 +19,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuadrangleDisplayCommand implements Command {
-    private static final String UPLOAD_DIRECTORY = "C:\\uploads";
+    private final QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
+    private final CustomFileReader customFileReader = new CustomFileReader();
+    private final DataParser dataParser = new DataParser();
+    private final QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+    private final QuadrangleRepository quadrangleRepository = QuadrangleRepository.getInstance();
+    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public String execute(HttpServletRequest request) {
         String fileName = request.getParameter(RequestParameter.FILE_NAME);
-        QuadrangleCreator quadrangleCreator = new QuadrangleCreator();
         List<Quadrangle> quadrangles = new ArrayList<>();
-        CustomFileReader textFileReader = new CustomFileReader();
-        DataParser quadrangleParser = new DataParser();
-        QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
-        QuadrangleRepository quadrangleRepository = QuadrangleRepository.getInstance();
-        List<String> linedText = textFileReader.readText(UPLOAD_DIRECTORY + File.separator + fileName);
+        List<String> linedText = customFileReader.readText(UPLOAD_DIRECTORY + File.separator + fileName);
         linedText.removeIf(line -> !quadrangleValidator.isLineConformQuadrangle(line));
         LOGGER.log(Level.INFO, "{} lines are correct", linedText.size());
         for (String line : linedText) {
-            List<Double> numbers = quadrangleParser.parseLineToNumberList(line);
+            List<Double> numbers = dataParser.parseLineToNumberList(line);
             Quadrangle quadrangle = quadrangleCreator.createQuadrangle(numbers);
             if (quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
                 quadrangles.add(quadrangle);

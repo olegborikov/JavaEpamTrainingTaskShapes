@@ -3,12 +3,12 @@ package com.borikov.task1.controller.command.impl;
 import com.borikov.task1.controller.PagePath;
 import com.borikov.task1.controller.RequestParameter;
 import com.borikov.task1.controller.command.Command;
-import com.borikov.task1.service.UserService;
+import com.borikov.task1.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class LoginCommand implements Command {
-    private final UserService userService = new UserService();
+    private final UserServiceImpl userService = new UserServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) {

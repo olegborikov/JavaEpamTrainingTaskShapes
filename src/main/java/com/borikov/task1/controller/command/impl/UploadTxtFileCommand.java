@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class UploadTxtFileCommand implements Command {
-    private static final String UPLOAD_DIRECTORY = "C:\\uploads";
+    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
     private static final String END_TEXT_NAME = ".txt";
     private static final Logger LOGGER = LogManager.getLogger();
 
