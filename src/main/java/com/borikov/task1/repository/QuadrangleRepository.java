@@ -33,7 +33,11 @@ public class QuadrangleRepository {
     }
 
     public boolean add(Quadrangle quadrangle) {
-        return quadrangles.add(quadrangle);
+        boolean result = false;
+        if (quadrangles.stream().noneMatch(q -> q.equalsQuadrangle(quadrangle))) {
+            result = quadrangles.add(quadrangle);
+        }
+        return result;
     }
 
     public boolean remove(Quadrangle quadrangle) {

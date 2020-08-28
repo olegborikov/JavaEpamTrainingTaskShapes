@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ExistingFilesDisplayCommand implements Command {
-    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
+    private static final String UPLOAD_DIRECTORY = "C:\\uploads";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override

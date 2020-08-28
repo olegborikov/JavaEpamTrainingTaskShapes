@@ -8,4 +8,5 @@ public class PagePath {
     public static final String FILE_CHOOSE = "/jsp/file_choose.jsp";
     public static final String QUADRANGLE_DISPLAY = "/jsp/quadrangle_display.jsp";
     public static final String UPLOAD_RESULT = "/jsp/upload_result.jsp";
+    public static final String REPOSITORY_DISPLAY = "/jsp/repository_display.jsp";
 }

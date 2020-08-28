@@ -7,6 +7,7 @@ import com.borikov.task1.creator.QuadrangleCreator;
 import com.borikov.task1.entity.Quadrangle;
 import com.borikov.task1.parser.DataParser;
 import com.borikov.task1.reader.CustomFileReader;
+import com.borikov.task1.repository.QuadrangleRepository;
 import com.borikov.task1.validator.QuadrangleValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuadrangleDisplayCommand implements Command {
-    private static final String UPLOAD_DIRECTORY = "E:\\uploads";
+    private static final String UPLOAD_DIRECTORY = "C:\\uploads";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
@@ -29,6 +30,7 @@ public class QuadrangleDisplayCommand implements Command {
         CustomFileReader textFileReader = new CustomFileReader();
         DataParser quadrangleParser = new DataParser();
         QuadrangleValidator quadrangleValidator = new QuadrangleValidator();
+        QuadrangleRepository quadrangleRepository = QuadrangleRepository.getInstance();
         List<String> linedText = textFileReader.readText(UPLOAD_DIRECTORY + File.separator + fileName);
         linedText.removeIf(line -> !quadrangleValidator.isLineConformQuadrangle(line));
         LOGGER.log(Level.INFO, "{} lines are correct", linedText.size());
@@ -37,6 +39,7 @@ public class QuadrangleDisplayCommand implements Command {
             Quadrangle quadrangle = quadrangleCreator.createQuadrangle(numbers);
             if (quadrangleValidator.isQuadrangleCorrect(quadrangle)) {
                 quadrangles.add(quadrangle);
+                quadrangleRepository.add(quadrangle);
             }
         }
         LOGGER.log(Level.INFO, "{} quadrangles are valid", quadrangles.size());

@@ -8,7 +8,7 @@ public enum CommandType {
     LOGIN_COMMAND(new LoginCommand()),
     LOGOUT_COMMAND(new LogoutCommand()),
     UPLOAD_TXT_FILE_COMMAND(new UploadTxtFileCommand()),
-    ADD_QUADRANGLES_WAREHOUSE_COMMAND(new AddQuadranglesWarehouseCommand());
+    REPOSITORY_DISPLAY_COMMAND(new RepositoryDisplayCommand());
 
     private final Command command;
 

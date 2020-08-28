@@ -21,6 +21,11 @@
     </form>
     <hr/>
     <form action="quadrangle" method="post">
+        <input type="hidden" name="commandName" value="REPOSITORY_DISPLAY_COMMAND">
+        <input type="submit" value="show repository"/>
+    </form>
+    <hr/>
+    <form action="quadrangle" method="post">
         <input type="hidden" name="commandName" value="logout_command">
         <input type="submit" value="Logout"/>
     </form>
