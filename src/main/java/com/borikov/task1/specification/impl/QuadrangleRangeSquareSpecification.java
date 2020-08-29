@@ -35,4 +35,3 @@ public class QuadrangleRangeSquareSpecification implements Specification<Quadran
         return result;
     }
 }
-
