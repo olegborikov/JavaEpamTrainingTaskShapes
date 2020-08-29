@@ -9,4 +9,7 @@ public class RequestParameter {
     public static final String QUADRANGLES = "quadrangles";
     public static final String EXISTING_FILES = "existingFiles";
     public static final String ERROR_LOGIN_PASSWORD_MESSAGE = "errorLoginPasswordMessage";
+
+    private RequestParameter() {
+    }
 }

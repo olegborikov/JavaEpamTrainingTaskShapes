@@ -10,22 +10,21 @@
     <hr/>
     Uploads
     <form action="/upload" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="commandName" value="upload_txt_file_command">
         Upload File: <input type="file" name="content" accept="text/plain">
         <input type="submit" value="Upload File">
     </form>
     <hr/>
-    <form action="quadrangle" method="post">
+    <form action="controller" method="post">
         <input type="hidden" name="commandName" value="existing_files_display_command">
         <input type="submit" value="show quadrangles"/>
     </form>
     <hr/>
-    <form action="quadrangle" method="post">
+    <form action="controller" method="post">
         <input type="hidden" name="commandName" value="REPOSITORY_DISPLAY_COMMAND">
         <input type="submit" value="show repository"/>
     </form>
     <hr/>
-    <form action="quadrangle" method="post">
+    <form action="controller" method="post">
         <input type="hidden" name="commandName" value="logout_command">
         <input type="submit" value="Logout"/>
     </form>

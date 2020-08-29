@@ -9,6 +9,9 @@ import java.util.Optional;
 public class CommandProvider {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    private CommandProvider() {
+    }
+
     public static Optional<Command> defineCommand(String commandName) {
         Optional<Command> currentCommand;
         if (commandName != null && !commandName.isBlank()) {
@@ -23,8 +26,5 @@ public class CommandProvider {
             currentCommand = Optional.empty();
         }
         return currentCommand;
-    }
-
-    private CommandProvider() {
     }
 }

@@ -46,7 +46,6 @@
             <h5>Repository is empty</h5>
         </c:otherwise>
     </c:choose>
-
     <hr/>
     <button onclick="history.back()">Previous Page</button>
     <hr/>

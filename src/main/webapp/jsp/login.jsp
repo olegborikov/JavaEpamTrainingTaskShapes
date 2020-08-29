@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <div>
-        <form name="loginForm" method="post" action="/quadrangle" autocomplete="off">
+        <form name="loginForm" method="post" action="controller" autocomplete="off">
             <input type="hidden" name="commandName" value="login_command">
             Login:<br/>
             <input type="text" name="login"/><br/>
