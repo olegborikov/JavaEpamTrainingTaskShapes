@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,18 +63,6 @@ public class QuadrangleCreatorImplTest {
         Quadrangle actual = quadrangleCreator.createQuadrangle(numbers);
         boolean result = actual.equalsQuadrangle(expected);
         assertFalse(result);
-    }
-
-    private boolean equalsQuadrangleList(
-            List<Quadrangle> quadrangles1, List<Quadrangle> quadrangles2) {
-        boolean result = false;
-        if (quadrangles1.size() == quadrangles2.size()) {
-            result = true;
-            for (int i = 0; i < quadrangles1.size() && result; i++) {
-                result = quadrangles1.get(i).equalsQuadrangle(quadrangles2.get(i));
-            }
-        }
-        return result;
     }
 
     private Quadrangle createQuadrangle(double point1X, double point1Y,

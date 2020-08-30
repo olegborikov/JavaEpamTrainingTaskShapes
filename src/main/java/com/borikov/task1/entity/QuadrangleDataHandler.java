@@ -52,7 +52,7 @@ public class QuadrangleDataHandler {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("QuadrangleDataKeeper{");
+        final StringBuilder sb = new StringBuilder("QuadrangleDataHandler{");
         sb.append("perimeter=").append(perimeter);
         sb.append(", square=").append(square);
         sb.append('}');
